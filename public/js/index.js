@@ -3,8 +3,8 @@
  ****************************** */
 
 // On recupère la data
-const fetchUser = async () => {
-  const response = await fetch("FishEyeData.json");
+const fetchUser = async (url) => {
+  const response = await fetch(url);
   const data = await response.json();
   return data;
 };
@@ -12,7 +12,7 @@ const fetchUser = async () => {
 // On traite la Data
 let photographers;
 let media;
-fetchUser().then((data) => {
+fetchUser("FishEyeData.json").then((data) => {
   photographers = data.photographers;
   media = data.media;
   photographers.map((photographer) => createPhotographerProfile(photographer));
@@ -28,9 +28,10 @@ fetchUser().then((data) => {
 
 const createPhotographerProfile = (photographer) => {
   const main = document.querySelector("main");
+  main.setAttribute("id", "main");
   main.innerHTML += `
   <div class="card">
-    <a href="">
+    <a href="./html/photographerpage.html#${photographer.id}">
       <img
         class="card__photo"
         src="./img/IDPhotos/${photographer.portrait}".jpg"
