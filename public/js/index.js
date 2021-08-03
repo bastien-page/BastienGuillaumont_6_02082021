@@ -18,6 +18,7 @@ fetchUser("FishEyeData.json").then((data) => {
   photographers.map((photographer) => createPhotographerProfile(photographer));
   console.log(photographers);
   console.log(media);
+  filterSelect();
 });
 
 /* *******************************
@@ -55,4 +56,16 @@ const createTags = (tags) => {
     addTag += `<div class="card__tag-filter">#${tag}</div>`;
   });
   return addTag;
+};
+
+// Filters selection
+const filterSelect = () => {
+  const filters = document.querySelectorAll(".filter");
+  for (i = 0; i < filters.length; i++) {
+    let filter = filters[i];
+    filter.addEventListener("click", () => {
+      filter.classList.toggle("filter-selected");
+      activeFilters = document.querySelectorAll(".filter-selected");
+    });
+  }
 };
