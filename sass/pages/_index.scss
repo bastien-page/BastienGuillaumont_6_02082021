@@ -2,3 +2,23 @@ body {
   margin: 0 auto;
   max-width: $breakpointmax;
 }
+
+main {
+  margin: 100px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-content: center;
+}
+
+@media screen and (max-width: $breakpointpad) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: $breakpointphone) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
