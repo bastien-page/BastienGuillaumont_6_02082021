@@ -7,7 +7,6 @@ header {
   img {
     margin-left: 40px;
     width: 200px;
-    height: 50px;
   }
   nav {
     ul {
@@ -23,5 +22,54 @@ header {
     color: $colorprimary;
     text-align: right;
     margin-right: 40px;
+  }
+}
+
+@media screen and (max-width: $breakpointlargepad) {
+  header {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 10px;
+    grid-template-areas:
+      "logo titre"
+      "nav nav";
+    img {
+      width: 200px;
+      margin-left: 40px;
+      grid-area: logo;
+    }
+    nav {
+      grid-area: nav;
+    }
+  }
+  h1 {
+    grid-area: titre;
+    font-size: 2rem;
+    margin-right: 40px;
+  }
+}
+
+@media screen and (max-width: $breakpointpad) {
+  header {
+    img {
+      width: 150px;
+      margin-left: 30px;
+    }
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: $breakpointphone) {
+  header {
+    img {
+      margin-left: 20px;
+    }
+  }
+  h1 {
+    font-size: 1rem;
+    margin-right: 20px;
   }
 }

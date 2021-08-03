@@ -30,7 +30,6 @@ header {
 header img {
   margin-left: 40px;
   width: 200px;
-  height: 50px;
 }
 header nav ul {
   display: flex;
@@ -56,6 +55,49 @@ header h1 {
   margin-right: 40px;
 }
 
+@media screen and (max-width: 1050px) {
+  header {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 10px;
+    grid-template-areas: "logo titre" "nav nav";
+  }
+  header img {
+    width: 200px;
+    margin-left: 40px;
+    grid-area: logo;
+  }
+  header nav {
+    grid-area: nav;
+  }
+
+  h1 {
+    grid-area: titre;
+    font-size: 2rem;
+    margin-right: 40px;
+  }
+}
+@media screen and (max-width: 800px) {
+  header img {
+    width: 150px;
+    margin-left: 30px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-right: 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  header img {
+    margin-left: 20px;
+  }
+
+  h1 {
+    font-size: 1rem;
+    margin-right: 20px;
+  }
+}
 body {
   margin: 0 auto;
   max-width: 1700px;
