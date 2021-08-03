@@ -19,6 +19,7 @@ fetchUser("FishEyeData.json").then((data) => {
   console.log(photographers);
   console.log(media);
   filterSelect();
+  btnScroll();
 });
 
 /* *******************************
@@ -68,4 +69,21 @@ const filterSelect = () => {
       activeFilters = document.querySelectorAll(".filter-selected");
     });
   }
+};
+
+// Bouton scroll
+const btnScroll = () => {
+  document.body.innerHTML += `
+    <div class="btn_scroll">
+      <a href="#main">Passer au contenu</a>
+    </div>
+    `;
+  let btn = document.querySelector(".btn_scroll");
+  document.addEventListener("scroll", (e) => {
+    if (window.scrollY > 5) {
+      btn.style.top = "10px";
+    } else {
+      btn.style.top = "-100px";
+    }
+  });
 };

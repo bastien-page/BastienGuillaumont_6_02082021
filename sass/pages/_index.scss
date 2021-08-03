@@ -11,6 +11,22 @@ main {
   align-content: center;
 }
 
+.btn_scroll {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: fixed;
+  top: -50px;
+  a {
+    background-color: $colortertiary;
+    border-radius: 5px;
+    color: black;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 6px;
+  }
+}
+
 @media screen and (max-width: $breakpointpad) {
   main {
     grid-template-columns: repeat(2, 1fr);
