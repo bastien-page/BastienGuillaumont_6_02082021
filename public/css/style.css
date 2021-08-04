@@ -169,6 +169,7 @@ main {
 .btn_scroll {
   display: flex;
   width: 100%;
+  max-width: 1700px;
   justify-content: center;
   position: fixed;
   top: -50px;

@@ -18,8 +18,8 @@ fetchUser("FishEyeData.json").then((data) => {
   photographers.map((photographer) => createPhotographerProfile(photographer));
   console.log(photographers);
   console.log(media);
-  filterSelect();
   btnScroll();
+  filterSelect();
 });
 
 /* *******************************
@@ -59,6 +59,8 @@ const createTags = (tags) => {
   return addTag;
 };
 
+let activeFilters;
+
 // Filters selection
 const filterSelect = () => {
   const filters = document.querySelectorAll(".filter");
@@ -69,9 +71,10 @@ const filterSelect = () => {
       activeFilters = document.querySelectorAll(".filter-selected");
     });
   }
+  return activeFilters;
 };
 
-// Bouton scroll
+// Création du Bouton scroll et ajout de l'écouteur
 const btnScroll = () => {
   document.body.innerHTML += `
     <div class="btn_scroll">
