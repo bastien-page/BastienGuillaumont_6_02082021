@@ -19,7 +19,7 @@ fetchUser("FishEyeData.json").then((data) => {
   console.log(photographers);
   console.log(media);
   btnScroll();
-  filterSelect();
+  addfilter();
 });
 
 /* *******************************
@@ -59,20 +59,31 @@ const createTags = (tags) => {
   return addTag;
 };
 
-let activeFilters;
-
 // Filters selection
-const filterSelect = () => {
+
+let activeFilters = [];
+function addfilter() {
   const filters = document.querySelectorAll(".filter");
-  for (i = 0; i < filters.length; i++) {
-    let filter = filters[i];
-    filter.addEventListener("click", () => {
+  for (let filter of filters) {
+    filter.addEventListener("click", (e) => {
+      /// on supprimer le filtre selectionné
+      if (activeFilters.includes(e.target.id)) {
+        let index = activeFilters.indexOf(e.target.id);
+        if (index > -1) {
+          activeFilters.splice(index, 1);
+        }
+        console.log(activeFilters);
+      }
+      // on ajoute le filtre selectionné
+      else {
+        activeFilters.push(e.target.id);
+        console.log(activeFilters);
+      }
       filter.classList.toggle("filter-selected");
-      activeFilters = document.querySelectorAll(".filter-selected");
     });
   }
   return activeFilters;
-};
+}
 
 // Création du Bouton scroll et ajout de l'écouteur
 const btnScroll = () => {
