@@ -158,7 +158,7 @@ body {
   max-width: 1700px;
 }
 
-main {
+.main {
   margin: 100px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -190,6 +190,72 @@ main {
 }
 @media screen and (max-width: 500px) {
   main {
+    grid-template-columns: 1fr;
+  }
+}
+.infoPhotographer {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 40px 0;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.photographer__name {
+  font-size: 5rem;
+  color: #d3573c;
+}
+.photographer__city {
+  font-size: 2rem;
+  color: #901c1c;
+}
+.photographer__slogan {
+  font-size: 1.5rem;
+  color: #525252;
+  margin-top: 1rem;
+}
+.photographer__tag {
+  display: flex;
+}
+.photographer__tag__filters {
+  font-weight: 500;
+  border: 1px solid #c4c4c4;
+  border-radius: 25px;
+  padding: 3px 5px;
+  margin: 3px;
+  cursor: pointer;
+  color: #901c1c;
+  margin-top: 1rem;
+}
+.photographer__tag__filters:hover, .photographer__tag__filters-selected {
+  background-color: #901c1c;
+  color: white;
+}
+.photographer__btn {
+  justify-items: flex-start;
+}
+.photographer__pp img {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.pictureGallery {
+  margin: 100px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .pictureGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 500px) {
+  .pictureGallery {
     grid-template-columns: 1fr;
   }
 }

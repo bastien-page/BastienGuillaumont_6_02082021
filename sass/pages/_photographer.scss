@@ -1,0 +1,59 @@
+.infoPhotographer {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 40px 0;
+  background-color: #fafafa;
+  border-radius: 5px;
+}
+
+.photographer {
+  &__name {
+    font-size: 5rem;
+    color: $colorsecondary;
+  }
+  &__city {
+    font-size: 2rem;
+    color: $colorprimary;
+  }
+  &__slogan {
+    font-size: 1.5rem;
+    color: #525252;
+    margin-top: 1rem;
+  }
+  &__tag {
+    display: flex;
+    &__filters {
+      @include filter;
+      margin-top: 1rem;
+    }
+  }
+  &__btn {
+    justify-items: flex-start;
+  }
+  &__pp img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+}
+
+.pictureGallery {
+  margin: 100px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media screen and (max-width: $breakpointpad) {
+  .pictureGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: $breakpointphone) {
+  .pictureGallery {
+    grid-template-columns: 1fr;
+  }
+}

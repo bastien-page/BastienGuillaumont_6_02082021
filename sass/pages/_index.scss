@@ -3,7 +3,7 @@ body {
   max-width: $breakpointmax;
 }
 
-main {
+.main {
   margin: 100px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
