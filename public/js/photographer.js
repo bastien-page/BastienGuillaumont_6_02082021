@@ -33,6 +33,7 @@ async function createPage() {
   console.log(medias);
   medias.map((media) => createGallery(media));
   createModalContact();
+  viewModal();
 }
 
 // On recupere le Hash
@@ -89,6 +90,7 @@ const createGallery = (media) => {
       `;
 };
 
+// Creation de la modal de contact
 const createModalContact = () => {
   const main = document.querySelector("main");
   main.innerHTML += `
@@ -136,3 +138,25 @@ const createModalContact = () => {
 </div>
   `;
 };
+
+// Affichage de la modal
+const viewModal = () => {
+  const iconModal = document.querySelector(".modal__close");
+  const btnContact = document.querySelector(".contact");
+  // OUverture modal
+  btnContact.addEventListener("click", () => {
+    const modal = document.querySelector(".bground");
+    modal.style.display = "initial";
+  });
+  //Fermeture modal
+  iconModal.addEventListener("click", () => {
+    const modal = document.querySelector(".bground");
+    modal.style.display = "none";
+    form.reset();
+  });
+};
+
+/****************************************
+ *
+ * ************************************
+ ************************************/
