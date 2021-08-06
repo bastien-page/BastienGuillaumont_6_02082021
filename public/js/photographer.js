@@ -81,7 +81,7 @@ function createGallery(media) {
             <figcaption class="cardphoto__title">
             ${media.title}
               <p class="cardphoto__numberlike">${media.likes}</p>
-              <img class="cardphoto__icon" src="../img/heart.png" alt="" />
+              <i class="cardphoto__icon fas fa-heart"></i>
             </figcaption>
           </figure>
       `;

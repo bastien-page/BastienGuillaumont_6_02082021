@@ -1,0 +1,30 @@
+.cardphoto {
+  width: 350px;
+  height: 350px;
+  margin: 0 auto;
+  color: $colorprimary;
+  &__title {
+    position: relative;
+    font-size: 2rem;
+  }
+  &__picture {
+    object-fit: cover;
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+  }
+  &__numberlike {
+    position: absolute;
+    right: 35px;
+    display: inline;
+    line-height: 30px;
+    font-size: 2rem;
+    top: 6px;
+  }
+  &__icon {
+    position: absolute;
+    right: 0px;
+    top: 8px;
+    font-size: 1.5rem;
+  }
+}

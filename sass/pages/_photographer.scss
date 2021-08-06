@@ -51,16 +51,16 @@
   margin: 100px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 30px;
 }
 
-@media screen and (max-width: $breakpointpad) {
+@media screen and (max-width: $breakpointlargepad) {
   .pictureGallery {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: $breakpointphone) {
+@media screen and (max-width: $breakpointpad) {
   .pictureGallery {
     grid-template-columns: 1fr;
   }
