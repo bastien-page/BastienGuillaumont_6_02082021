@@ -29,7 +29,7 @@ async function createPage() {
   console.log(medias);
   console.log("======");
   medias = medias.filter((element) => {
-    return element.photographerId == hash;
+    return element.photographerId == hash && !element.image == "";
   });
   console.log(medias);
   medias.map((media) => createGallery(media));
