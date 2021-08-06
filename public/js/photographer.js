@@ -25,12 +25,9 @@ async function createPage() {
     return element.id == hash;
   });
   photographers.map((photographer) => createPhotographerInfo(photographer));
-  console.log(medias);
-  console.log("======");
   medias = medias.filter((element) => {
     return element.photographerId == hash && !element.image == "";
   });
-  console.log(medias);
   medias.map((media) => createGallery(media));
   createModalContact();
   viewModal();

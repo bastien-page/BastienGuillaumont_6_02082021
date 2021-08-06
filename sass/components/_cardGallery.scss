@@ -28,3 +28,29 @@
     font-size: 1.5rem;
   }
 }
+
+@media screen and (max-width: $breakpointphone) {
+  .cardphoto {
+    width: 335px;
+    height: 200px;
+    color: $colorprimary;
+    &__title {
+      font-size: 1rem;
+    }
+    &__picture {
+      width: 100%;
+      height: 180px;
+    }
+    &__numberlike {
+      font-size: 1rem;
+      right: 15px;
+      top: -6px;
+    }
+    &__icon {
+      position: absolute;
+      right: 0px;
+      top: 3px;
+      font-size: 0.8rem;
+    }
+  }
+}

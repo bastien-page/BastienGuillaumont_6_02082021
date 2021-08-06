@@ -124,6 +124,31 @@ h1 {
   font-size: 1.5rem;
 }
 
+@media screen and (max-width: 500px) {
+  .cardphoto {
+    width: 335px;
+    height: 200px;
+    color: #901c1c;
+  }
+  .cardphoto__title {
+    font-size: 1rem;
+  }
+  .cardphoto__picture {
+    width: 100%;
+    height: 180px;
+  }
+  .cardphoto__numberlike {
+    font-size: 1rem;
+    right: 15px;
+    top: -6px;
+  }
+  .cardphoto__icon {
+    position: absolute;
+    right: 0px;
+    top: 3px;
+    font-size: 0.8rem;
+  }
+}
 header {
   display: grid;
   grid-template-columns: 250px 1fr 455px;
@@ -403,17 +428,54 @@ body {
   margin: 100px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 10px;
+  row-gap: 30px;
 }
 
 @media screen and (max-width: 1050px) {
   .pictureGallery {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .photographer__infos {
+    margin-left: 30px;
+  }
+  .photographer__name {
+    font-size: 4rem;
+  }
+  .photographer__pp img {
+    margin-right: 30px;
+  }
+  .photographer__btn {
+    margin-right: 20px;
+  }
 }
 @media screen and (max-width: 800px) {
   .pictureGallery {
     grid-template-columns: 1fr;
+  }
+
+  .infoPhotographer {
+    background-color: white;
+    margin: 10px 10px;
+    padding: 0;
+  }
+
+  .photographer__btn {
+    display: none;
+  }
+  .photographer__name {
+    font-size: 2rem;
+  }
+  .photographer__city {
+    font-size: 1rem;
+  }
+  .photographer__slogan {
+    font-size: 1rem;
+  }
+  .photographer__pp img {
+    width: 150px;
+    height: 150px;
   }
 }
 

@@ -11,7 +11,6 @@
   &__infos {
     margin-left: 50px;
   }
-
   &__name {
     font-size: 5rem;
     color: $colorsecondary;
@@ -51,17 +50,55 @@
   margin: 100px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 10px;
+  row-gap: 30px;
 }
 
 @media screen and (max-width: $breakpointlargepad) {
   .pictureGallery {
     grid-template-columns: repeat(2, 1fr);
   }
+  .photographer {
+    &__infos {
+      margin-left: 30px;
+    }
+    &__name {
+      font-size: 4rem;
+    }
+    &__pp img {
+      margin-right: 30px;
+    }
+    &__btn {
+      margin-right: 20px;
+    }
+  }
 }
 
 @media screen and (max-width: $breakpointpad) {
   .pictureGallery {
     grid-template-columns: 1fr;
+  }
+  .infoPhotographer {
+    background-color: white;
+    margin: 10px 10px;
+    padding: 0;
+  }
+  .photographer {
+    &__btn {
+      display: none;
+    }
+    &__name {
+      font-size: 2rem;
+    }
+    &__city {
+      font-size: 1rem;
+    }
+    &__slogan {
+      font-size: 1rem;
+    }
+    &__pp img {
+      width: 150px;
+      height: 150px;
+    }
   }
 }
