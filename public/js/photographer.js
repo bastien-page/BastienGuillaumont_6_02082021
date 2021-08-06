@@ -18,7 +18,6 @@ fetchUser().then((data) => {
 });
 
 window.addEventListener("load", createPage());
-
 async function createPage() {
   await fetchUser();
   recupHash();
@@ -33,16 +32,17 @@ async function createPage() {
   });
   console.log(medias);
   medias.map((media) => createGallery(media));
+  createModalContact();
 }
 
 // On recupere le Hash
-function recupHash() {
+const recupHash = () => {
   hash = window.location.hash.substr(1);
   return hash;
-}
+};
 
 /// Creation de la partie info du photographe
-function createPhotographerInfo(photographer) {
+const createPhotographerInfo = (photographer) => {
   const photographerInfo = document.querySelector(".infoPhotographer");
   photographerInfo.innerHTML += `
       <div class="photographer__infos">
@@ -59,17 +59,19 @@ function createPhotographerInfo(photographer) {
       <div class="photographer__pp">
         <img src="../img/IDPhotos/${photographer.portrait}" alt="" />
         </div>`;
-  // Creation de chaque Tag sur la card
-  function createTags(tags) {
-    let addTag = "";
-    tags.forEach((tag) => {
-      addTag += `<div class="photographer__tag__filters">#${tag}</div>`;
-    });
-    return addTag;
-  }
-}
+};
 
-function createGallery(media) {
+// Creation de chaque Tag sur la card
+const createTags = (tags) => {
+  let addTag = "";
+  tags.forEach((tag) => {
+    addTag += `<div class="photographer__tag__filters">#${tag}</div>`;
+  });
+  return addTag;
+};
+
+// Creation de la  gallerie d'image
+const createGallery = (media) => {
   const gallery = document.querySelector(".pictureGallery");
   gallery.innerHTML += `
       <figure class="cardphoto">
@@ -85,4 +87,52 @@ function createGallery(media) {
             </figcaption>
           </figure>
       `;
-}
+};
+
+const createModalContact = () => {
+  const main = document.querySelector("main");
+  main.innerHTML += `
+  <div class="bground">
+  <div class="modal">
+    <span class="modal__close"></span>
+    <div class="modal__title">
+      Contactez-moi <br />
+      A MODIFIER 
+    </div>
+    <form action="">
+      <label class="modal__label" for="first">Prénom</label>
+      <div class="first"></div>
+      <br />
+      <input class="modal__input" type="text" id="first" name="first" />
+      <br />
+      <label class="modal__label" for="last">Nom</label>
+      <div class="last"></div>
+      <br />
+      <input class="modal__input" type="text" id="last" name="last" />
+      <br />
+      <label class="modal__label" for="email">E-mail</label>
+      <div class="email"></div>
+      <br />
+      <input class="modal__input" type="email" id="email" name="email" />
+      <br />
+      <label class="modal__label" for="message">Votre message</label>
+      <div class="message"></div>
+      <br />
+      <textarea
+        class="modal__input"
+        name=""
+        id="message"
+        cols="25"
+        rows="5"
+      ></textarea>
+      <input
+        class="btn-submit"
+        type="submit"
+        class="button"
+        value="Envoyer"
+      />
+    </form>
+  </div>
+</div>
+  `;
+};

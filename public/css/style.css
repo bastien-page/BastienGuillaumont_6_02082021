@@ -84,6 +84,15 @@ h1 {
   padding: 1rem;
 }
 
+.btn-submit {
+  background-color: #901c1c;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
 .cardphoto {
   width: 350px;
   height: 350px;
@@ -191,6 +200,106 @@ header h1 {
   h1 {
     font-size: 1rem;
     margin-right: 20px;
+  }
+}
+.bground {
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.modal {
+  margin: 40px auto;
+  width: 100%;
+  max-width: 700px;
+  background-color: #db8876;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+}
+.modal__title {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+.modal__input, .modal__label {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+.modal__input {
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 5px 10px;
+}
+.modal__error {
+  color: red;
+  font-size: 1rem;
+  float: right;
+}
+.modal__close {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  cursor: pointer;
+}
+.modal__close:before, .modal__close:after {
+  position: absolute;
+  left: 20px;
+  content: " ";
+  height: 50px;
+  width: 5px;
+  background-color: #fff;
+}
+.modal__close:before {
+  transform: rotate(45deg);
+}
+.modal__close:after {
+  transform: rotate(-45deg);
+}
+
+.first,
+.last,
+.email,
+.message {
+  display: none;
+}
+
+.error-label {
+  display: inherit;
+  color: red;
+  font-size: 1rem;
+  float: right;
+}
+
+.error-input {
+  border: 3px solid red;
+  animation: inputError 0.5s;
+}
+
+@keyframes inputError {
+  0% {
+    transform: translateX(-5px);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
 body {
