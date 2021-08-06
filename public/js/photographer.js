@@ -45,7 +45,7 @@ function recupHash() {
 function createPhotographerInfo(photographer) {
   const photographerInfo = document.querySelector(".infoPhotographer");
   photographerInfo.innerHTML += `
-      <div>
+      <div class="photographer__infos">
         <p class="photographer__name">${photographer.name}</p>
         <p class="photographer__city">${photographer.city}, ${
     photographer.country

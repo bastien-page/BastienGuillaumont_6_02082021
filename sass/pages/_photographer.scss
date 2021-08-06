@@ -1,13 +1,17 @@
 .infoPhotographer {
   display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-  padding: 40px 0;
+  justify-content: space-between;
+  margin: 30px 40px;
+  padding: 50px 0;
   background-color: #fafafa;
   border-radius: 5px;
 }
 
 .photographer {
+  &__infos {
+    margin-left: 50px;
+  }
+
   &__name {
     font-size: 5rem;
     color: $colorsecondary;
@@ -29,13 +33,17 @@
     }
   }
   &__btn {
-    justify-items: flex-start;
+    margin-top: 20px;
+  }
+  &__pp {
+    align-self: center;
   }
   &__pp img {
     object-fit: cover;
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    margin-right: 50px;
   }
 }
 
