@@ -3,9 +3,15 @@
   height: 350px;
   margin: 0 auto;
   color: $colorprimary;
-  &__title {
+  &__info {
     position: relative;
+  }
+  &__title {
     font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
   }
   &__picture {
     object-fit: cover;

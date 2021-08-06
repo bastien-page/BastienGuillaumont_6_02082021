@@ -31,6 +31,7 @@ async function createPage() {
   medias.map((media) => createGallery(media));
   createModalContact();
   viewModal();
+  btnContact();
 }
 
 // On recupere le Hash
@@ -78,8 +79,8 @@ const createGallery = (media) => {
               src="../img/gallerie/${media.image}"
               alt=""
             />
-            <figcaption class="cardphoto__title">
-            ${media.title}
+            <figcaption class="cardphoto__info" >
+              <p class="cardphoto__title">${media.title}</p>
               <p class="cardphoto__numberlike">${media.likes}</p>
               <i class="cardphoto__icon fas fa-heart"></i>
             </figcaption>
@@ -153,7 +154,14 @@ const viewModal = () => {
   });
 };
 
-/****************************************
- *
- * ************************************
- ************************************/
+const btnContact = () => {
+  document.body.innerHTML += `
+  <button class="btncontact">Contactez-moi</button>`;
+  let btn = document.querySelector(".btncontact");
+
+  btn.addEventListener("click", () => {
+    const modal = document.querySelector(".bground");
+    modal.style.display = "initial";
+  });
+  viewModal();
+};
