@@ -54,20 +54,6 @@
   row-gap: 30px;
 }
 
-.btncontact {
-  display: none;
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: $colorprimary;
-  border-radius: 5px;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-}
-
 @media screen and (max-width: $breakpointlargepad) {
   .pictureGallery {
     grid-template-columns: repeat(2, 1fr);
@@ -98,8 +84,17 @@
     padding: 0;
   }
   .photographer {
-    &__btn {
-      display: none;
+    &__btn .contact {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $colorprimary;
+      border-radius: 5px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
     }
     &__name {
       font-size: 2rem;
@@ -114,8 +109,5 @@
       width: 150px;
       height: 150px;
     }
-  }
-  .btncontact {
-    display: initial;
   }
 }

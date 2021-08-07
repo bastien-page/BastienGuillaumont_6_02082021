@@ -93,15 +93,6 @@ h1 {
   padding: 10px 20px;
 }
 
-.btncontact {
-  background-color: #901c1c;
-  border-radius: 5px;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-}
-
 .cardphoto {
   width: 350px;
   height: 350px;
@@ -447,20 +438,6 @@ body {
   row-gap: 30px;
 }
 
-.btncontact {
-  display: none;
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #901c1c;
-  border-radius: 5px;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-}
-
 @media screen and (max-width: 1050px) {
   .pictureGallery {
     grid-template-columns: repeat(2, 1fr);
@@ -490,8 +467,17 @@ body {
     padding: 0;
   }
 
-  .photographer__btn {
-    display: none;
+  .photographer__btn .contact {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #901c1c;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
   }
   .photographer__name {
     font-size: 2rem;
@@ -505,10 +491,6 @@ body {
   .photographer__pp img {
     width: 150px;
     height: 150px;
-  }
-
-  .btncontact {
-    display: initial;
   }
 }
 

@@ -31,7 +31,6 @@ async function createPage() {
   medias.map((media) => createGallery(media));
   createModalContact();
   viewModal();
-  btnContact();
 }
 
 // On recupere le Hash
@@ -152,16 +151,4 @@ const viewModal = () => {
     modal.style.display = "none";
     form.reset();
   });
-};
-
-const btnContact = () => {
-  document.body.innerHTML += `
-  <button class="btncontact">Contactez-moi</button>`;
-  let btn = document.querySelector(".btncontact");
-
-  btn.addEventListener("click", () => {
-    const modal = document.querySelector(".bground");
-    modal.style.display = "initial";
-  });
-  viewModal();
 };
