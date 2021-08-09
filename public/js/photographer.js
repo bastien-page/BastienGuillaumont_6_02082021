@@ -25,15 +25,16 @@ async function createPage() {
     return element.id == hash;
   });
   photographers.map((photographer) => createPhotographerInfo(photographer));
+  photographers.map((photographer) => createFooter(photographer));
   medias = medias.filter((element) => {
     return element.photographerId == hash;
   });
   medias.map((media) => createGallery(media));
-  createFooter();
   createModalContact();
+  totalLikes();
   viewModal();
   viewLightbox();
-  compterLike();
+  addLike();
 }
 
 // On recupere le Hash
@@ -71,6 +72,8 @@ const createTags = (tags) => {
   return addTag;
 };
 
+let totalLike = [];
+
 // Creation de la  gallerie d'image
 const createGallery = (media) => {
   const gallery = document.querySelector(".pictureGallery");
@@ -90,6 +93,8 @@ const createGallery = (media) => {
             </figcaption>
           </figure>
       `;
+
+  totalLike.push(media.likes);
 };
 
 // Creation de la modal de contact
@@ -158,15 +163,15 @@ const createLightbox = () => {
     </div>`;
 };
 
-const createFooter = () => {
+const createFooter = (photographer) => {
   const footer = document.querySelector("footer");
   footer.innerHTML += `
   <div class="like">
-        <p class="like__compter">29890</p>
+        <p class="like__compter"></p>
         <i class="like__icon fas fa-heart"></i>
       </div>
       <div>
-        <p class="price">300€/jour</p>
+        <p class="price">${photographer.price}€/jour</p>
       </div>`;
 };
 
@@ -211,7 +216,8 @@ const viewLightbox = () => {
   });
 };
 
-const compterLike = () => {
+// On ajoute les likes au click
+const addLike = () => {
   const iconsLike = document.querySelectorAll(".cardphoto__icon");
   const totalLike = document.querySelector(".like__compter");
   iconsLike.forEach((icon) =>
@@ -226,4 +232,13 @@ const compterLike = () => {
       }
     })
   );
+};
+
+//On compte le nombre de likes
+const totalLikes = () => {
+  let total = 0;
+  for (i = 0; i < totalLike.length; i++) {
+    total += totalLike[i];
+  }
+  document.querySelector(".like__compter").innerText = total;
 };
