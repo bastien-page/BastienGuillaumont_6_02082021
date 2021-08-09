@@ -1,0 +1,47 @@
+.lightbox {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  overflow: auto;
+  &__content {
+    margin: 40px auto;
+    width: 100%;
+    max-width: 1200px;
+    &__close {
+      position: fixed;
+      top: 30px;
+      right: 20px;
+      font-size: 4rem;
+      cursor: pointer;
+      color: $colorprimary;
+    }
+    img {
+      width: 100%;
+      height: 900px;
+      object-fit: cover;
+    }
+    &__direction__left {
+      color: $colorprimary;
+      cursor: pointer;
+      position: fixed;
+      top: 50%;
+      font-size: 4rem;
+      transform: translateY(-50%);
+      left: 20px;
+    }
+    &__direction__right {
+      color: $colorprimary;
+      cursor: pointer;
+      position: fixed;
+      top: 50%;
+      font-size: 4rem;
+      transform: translateY(-50%);
+      right: 20px;
+    }
+  }
+}

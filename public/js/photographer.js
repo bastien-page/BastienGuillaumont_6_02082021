@@ -29,6 +29,7 @@ async function createPage() {
     return element.photographerId == hash && !element.image == "";
   });
   medias.map((media) => createGallery(media));
+  createFooter();
   createModalContact();
   viewModal();
 }
@@ -73,11 +74,13 @@ const createGallery = (media) => {
   const gallery = document.querySelector(".pictureGallery");
   gallery.innerHTML += `
       <figure class="cardphoto">
+      <a href="../img/gallerie/${media.image}">
             <img
               class="cardphoto__picture"
               src="../img/gallerie/${media.image}"
-              alt=""
+              alt="${media.title}"
             />
+            </a>
             <figcaption class="cardphoto__info" >
               <p class="cardphoto__title">${media.title}</p>
               <p class="cardphoto__numberlike">${media.likes}</p>
@@ -136,6 +139,35 @@ const createModalContact = () => {
   `;
 };
 
+const createLightbox = () => {
+  const main = document.querySelector("main");
+  main.innerHTML += `
+  <div class="lightbox">
+  <div class="lightbox__content">
+  <i class="lightbox__content__close fas fa-times"></i>  
+  <img
+    class=""
+    src=""
+      alt=""
+    />
+    <i class="lightbox__content__direction__left fas fa-chevron-left"></i>
+    <i class="lightbox__content__direction__right fas fa-chevron-right"></i>
+    </div>
+    </div>`;
+};
+
+const createFooter = () => {
+  const footer = document.querySelector("footer");
+  footer.innerHTML += `
+  <div class="like">
+        <p class="like__compter">29890</p>
+        <i class="like__icon fas fa-heart"></i>
+      </div>
+      <div>
+        <p class="price">300€/jour</p>
+      </div>`;
+};
+
 // Affichage de la modal
 const viewModal = () => {
   const iconModal = document.querySelector(".modal__close");
@@ -150,5 +182,14 @@ const viewModal = () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "none";
     form.reset();
+  });
+};
+
+const viewLightbox = () => {
+  const iconLightbox = document.querySelector(".lightbox__content__close");
+
+  iconLightbox.addEventListener("click", () => {
+    const lightbox = document.querySelector(".lightbox");
+    lightbox.style.display = "none";
   });
 };
