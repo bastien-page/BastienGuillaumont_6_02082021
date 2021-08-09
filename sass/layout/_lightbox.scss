@@ -21,9 +21,13 @@
       color: $colorprimary;
     }
     img {
-      width: 100%;
-      height: 900px;
-      object-fit: cover;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 80%;
+      object-fit: contain;
     }
     &__direction__left {
       color: $colorprimary;

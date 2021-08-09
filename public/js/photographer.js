@@ -32,6 +32,7 @@ async function createPage() {
   createFooter();
   createModalContact();
   viewModal();
+  viewLightbox();
 }
 
 // On recupere le Hash
@@ -186,10 +187,24 @@ const viewModal = () => {
 };
 
 const viewLightbox = () => {
+  createLightbox();
   const iconLightbox = document.querySelector(".lightbox__content__close");
+  const links = document.querySelectorAll(".cardphoto a");
+  const lightbox = document.querySelector(".lightbox");
+
+  console.log(links);
+
+  for (let link of links) {
+    console.log(link);
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const img = document.querySelector(".lightbox__content img");
+      img.src = this.href;
+      lightbox.style.display = "initial";
+    });
+  }
 
   iconLightbox.addEventListener("click", () => {
-    const lightbox = document.querySelector(".lightbox");
     lightbox.style.display = "none";
   });
 };
