@@ -32,7 +32,14 @@
     right: 0px;
     top: 8px;
     font-size: 1.5rem;
+    cursor: pointer;
+    transform: scale(1);
+    animation: 0.3s;
   }
+}
+
+.click {
+  transform: scale(1.4);
 }
 
 @media screen and (max-width: $breakpointphone) {

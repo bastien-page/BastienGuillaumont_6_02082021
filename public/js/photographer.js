@@ -26,13 +26,14 @@ async function createPage() {
   });
   photographers.map((photographer) => createPhotographerInfo(photographer));
   medias = medias.filter((element) => {
-    return element.photographerId == hash && !element.image == "";
+    return element.photographerId == hash;
   });
   medias.map((media) => createGallery(media));
   createFooter();
   createModalContact();
   viewModal();
   viewLightbox();
+  compterLike();
 }
 
 // On recupere le Hash
@@ -78,7 +79,7 @@ const createGallery = (media) => {
       <a href="../img/gallerie/${media.image}">
             <img
               class="cardphoto__picture"
-              src="../img/gallerie/${media.image}"
+              src="../img/gallerie/${media.image} "
               alt="${media.title}"
             />
             </a>
@@ -191,11 +192,12 @@ const viewLightbox = () => {
   const iconLightbox = document.querySelector(".lightbox__content__close");
   const links = document.querySelectorAll(".cardphoto a");
   const lightbox = document.querySelector(".lightbox");
-
-  console.log(links);
+  const navLeft = document.querySelector(".lightbox__content__direction__left");
+  const navRight = document.querySelector(
+    ".lightbox__content__direction__right"
+  );
 
   for (let link of links) {
-    console.log(link);
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const img = document.querySelector(".lightbox__content img");
@@ -207,4 +209,21 @@ const viewLightbox = () => {
   iconLightbox.addEventListener("click", () => {
     lightbox.style.display = "none";
   });
+};
+
+const compterLike = () => {
+  const iconsLike = document.querySelectorAll(".cardphoto__icon");
+  const totalLike = document.querySelector(".like__compter");
+  iconsLike.forEach((icon) =>
+    icon.addEventListener("click", () => {
+      icon.classList.toggle("click");
+      if (icon.classList.contains("click")) {
+        icon.previousElementSibling.innerText++;
+        totalLike.innerText++;
+      } else {
+        icon.previousElementSibling.innerText--;
+        totalLike.innerText--;
+      }
+    })
+  );
 };
