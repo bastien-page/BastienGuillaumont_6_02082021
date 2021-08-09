@@ -120,6 +120,12 @@ h1 {
   height: 300px;
   border-radius: 5px;
 }
+.cardphoto__video {
+  display: none;
+  width: 350px;
+  height: 300px;
+  border-radius: 5px;
+}
 .cardphoto__numberlike {
   position: absolute;
   right: 35px;

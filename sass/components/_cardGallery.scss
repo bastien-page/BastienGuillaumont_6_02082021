@@ -19,6 +19,12 @@
     height: 300px;
     border-radius: 5px;
   }
+  &__video {
+    display: none;
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+  }
   &__numberlike {
     position: absolute;
     right: 35px;

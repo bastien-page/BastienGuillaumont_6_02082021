@@ -30,11 +30,11 @@ async function createPage() {
     return element.photographerId == hash;
   });
   medias.map((media) => createGallery(media));
-  createModalContact();
   totalLikes();
-  viewModal();
-  viewLightbox();
   addLike();
+
+  viewLightbox();
+  viewModal();
 }
 
 // On recupere le Hash
@@ -85,6 +85,7 @@ const createGallery = (media) => {
               src="../img/gallerie/${media.image} "
               alt="${media.title}"
             />
+            
             </a>
             <figcaption class="cardphoto__info" >
               <p class="cardphoto__title">${media.title}</p>
@@ -177,6 +178,7 @@ const createFooter = (photographer) => {
 
 // Affichage de la modal
 const viewModal = () => {
+  createModalContact();
   const iconModal = document.querySelector(".modal__close");
   const btnContact = document.querySelector(".contact");
   // OUverture modal
@@ -192,6 +194,7 @@ const viewModal = () => {
   });
 };
 
+// Gestion de la Lightbox
 const viewLightbox = () => {
   createLightbox();
   const iconLightbox = document.querySelector(".lightbox__content__close");
