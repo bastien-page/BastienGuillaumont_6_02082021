@@ -30,11 +30,10 @@ async function createPage() {
     return element.photographerId == hash;
   });
   medias.map((media) => createGallery(media));
+  viewModal();
   totalLikes();
   addLike();
-
-  viewLightbox();
-  viewModal();
+  Lightbox.init();
 }
 
 // On recupere le Hash
@@ -147,33 +146,16 @@ const createModalContact = () => {
   `;
 };
 
-const createLightbox = () => {
-  const main = document.querySelector("main");
-  main.innerHTML += `
-  <div class="lightbox">
-  <div class="lightbox__content">
-  <i class="lightbox__content__close fas fa-times"></i>  
-  <img
-    class=""
-    src=""
-      alt=""
-    />
-    <i class="lightbox__content__direction__left fas fa-chevron-left"></i>
-    <i class="lightbox__content__direction__right fas fa-chevron-right"></i>
-    </div>
-    </div>`;
-};
-
 const createFooter = (photographer) => {
   const footer = document.querySelector("footer");
   footer.innerHTML += `
   <div class="like">
-        <p class="like__compter"></p>
-        <i class="like__icon fas fa-heart"></i>
-      </div>
-      <div>
-        <p class="price">${photographer.price}€/jour</p>
-      </div>`;
+  <p class="like__compter"></p>
+  <i class="like__icon fas fa-heart"></i>
+  </div>
+  <div>
+  <p class="price">${photographer.price}€/jour</p>
+  </div>`;
 };
 
 // Affichage de la modal
@@ -191,31 +173,6 @@ const viewModal = () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "none";
     form.reset();
-  });
-};
-
-// Gestion de la Lightbox
-const viewLightbox = () => {
-  createLightbox();
-  const iconLightbox = document.querySelector(".lightbox__content__close");
-  const links = document.querySelectorAll(".cardphoto a");
-  const lightbox = document.querySelector(".lightbox");
-  const navLeft = document.querySelector(".lightbox__content__direction__left");
-  const navRight = document.querySelector(
-    ".lightbox__content__direction__right"
-  );
-
-  for (let link of links) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const img = document.querySelector(".lightbox__content img");
-      img.src = this.href;
-      lightbox.style.display = "initial";
-    });
-  }
-
-  iconLightbox.addEventListener("click", () => {
-    lightbox.style.display = "none";
   });
 };
 
@@ -245,3 +202,105 @@ const totalLikes = () => {
   }
   document.querySelector(".like__compter").innerText = total;
 };
+
+///////////////////////////////
+
+class Lightbox {
+  static init() {
+    const links = Array.from(
+      document.querySelectorAll(
+        'a[href$=".jpg"], a[href$=".jpeg"],a[href$=".png"]'
+      )
+    );
+    const images = links.map((link) => link.getAttribute("href"));
+
+    links.forEach((link) =>
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        new Lightbox(e.currentTarget.getAttribute("href"), images);
+      })
+    );
+  }
+
+  constructor(url, images) {
+    this.element = this.buildDOM(url);
+    this.images = images;
+    this.loadImage(url);
+    this.onKeyUp = this.onKeyUp.bind(this);
+    document.body.appendChild(this.element);
+    document.addEventListener("keyup", this.onKeyUp);
+  }
+
+  loadImage(url) {
+    this.url = null;
+    const image = new Image();
+    const container = this.element.querySelector(".lightbox__container");
+    const loader = document.createElement("div");
+    loader.classList.add("lightbox__loader");
+    container.innerHTML = "";
+    container.appendChild(loader);
+    image.onload = () => {
+      container.removeChild(loader);
+      container.appendChild(image);
+      this.url = url;
+    };
+    image.src = url;
+  }
+
+  onKeyUp(e) {
+    if (e.key === "Escape") {
+      this.close(e);
+    } else if (e.key === "ArrowRight") {
+      this.next(e);
+    } else if (e.key === "ArrowLeft") {
+      this.prev(e);
+    }
+  }
+
+  close(e) {
+    e.preventDefault;
+    this.element.classList.add("fadeOut");
+    window.setTimeout(() => {
+      this.element.parentElement.removeChild(this.element);
+    }, 500);
+    document.removeEventListener("keyup", this.onKeyUp);
+  }
+
+  next(e) {
+    e.preventDefault();
+    let i = this.images.findIndex((i) => i === this.url);
+    if (i === this.images.length - 1) {
+      i = -1;
+    }
+    this.loadImage(this.images[i + 1]);
+  }
+
+  prev(e) {
+    e.preventDefault();
+    let i = this.images.findIndex((i) => i === this.url);
+    if (i === 0) {
+      i = this.images.length;
+    }
+    this.loadImage(this.images[i - 1]);
+  }
+
+  buildDOM(url) {
+    const lightbox = document.createElement("div");
+    lightbox.classList.add("lightbox");
+    lightbox.innerHTML = `<i class="lightbox__close fas fa-times"></i>
+    <i class="lightbox__prev fas fa-chevron-left"></i>
+    <i class="lightbox__next fas fa-chevron-right"></i>
+    <div class="lightbox__container">
+    </div>`;
+    lightbox
+      .querySelector(".lightbox__close")
+      .addEventListener("click", this.close.bind(this));
+    lightbox
+      .querySelector(".lightbox__next")
+      .addEventListener("click", this.next.bind(this));
+    lightbox
+      .querySelector(".lightbox__prev")
+      .addEventListener("click", this.prev.bind(this));
+    return lightbox;
+  }
+}
