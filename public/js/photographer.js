@@ -76,23 +76,43 @@ let totalLike = [];
 // Creation de la  gallerie d'image
 const createGallery = (media) => {
   const gallery = document.querySelector(".pictureGallery");
-  gallery.innerHTML += `
-      <figure class="cardphoto">
-      <a href="../img/gallerie/${media.image}">
-            <img
-              class="cardphoto__picture"
-              src="../img/gallerie/${media.image} "
-              alt="${media.title}"
-            />
-            
-            </a>
-            <figcaption class="cardphoto__info" >
-              <p class="cardphoto__title">${media.title}</p>
-              <p class="cardphoto__numberlike">${media.likes}</p>
-              <i class="cardphoto__icon fas fa-heart"></i>
-            </figcaption>
-          </figure>
-      `;
+  if (media.video == undefined) {
+    gallery.innerHTML += `
+          <figure class="cardphoto">
+          <a href="../img/gallerie/${media.image}">
+                <img
+                  class="cardphoto__picture"
+                  src="../img/gallerie/${media.image} "
+                  alt="${media.title}"
+                />
+                
+                </a>
+                <figcaption class="cardphoto__info" >
+                  <p class="cardphoto__title">${media.title}</p>
+                  <p class="cardphoto__numberlike">${media.likes}</p>
+                  <i class="cardphoto__icon fas fa-heart"></i>
+                </figcaption>
+              </figure>
+          `;
+  } else {
+    gallery.innerHTML += `
+          <figure class="cardphoto">
+          <a href="../img/gallerie/${media.image}">
+                <video
+                  class="cardphoto__picture"
+                  src="../img/gallerie/${media.video} "
+                  alt="${media.title}"
+                />
+                
+                </a>
+                <figcaption class="cardphoto__info" >
+                  <p class="cardphoto__title">${media.title}</p>
+                  <p class="cardphoto__numberlike">${media.likes}</p>
+                  <i class="cardphoto__icon fas fa-heart"></i>
+                </figcaption>
+              </figure>
+          `;
+  }
 
   totalLike.push(media.likes);
 };
@@ -169,6 +189,11 @@ const viewModal = () => {
     modal.style.display = "initial";
   });
   //Fermeture modal
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      modal.style.display = "none";
+    }
+  });
   iconModal.addEventListener("click", () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "none";
@@ -203,7 +228,7 @@ const totalLikes = () => {
   document.querySelector(".like__compter").innerText = total;
 };
 
-///////////////////////////////
+// Creation de la Lightbox
 
 class Lightbox {
   static init() {
@@ -213,18 +238,20 @@ class Lightbox {
       )
     );
     const images = links.map((link) => link.getAttribute("href"));
-
+    const titles = links.map((link) => link.lastElementChild.alt);
+    console.log(titles);
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        new Lightbox(e.currentTarget.getAttribute("href"), images);
+        new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
       })
     );
   }
 
-  constructor(url, images) {
+  constructor(url, images, titles) {
     this.element = this.buildDOM(url);
     this.images = images;
+    this.titles = titles;
     this.loadImage(url);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
@@ -235,14 +262,15 @@ class Lightbox {
     this.url = null;
     const image = new Image();
     const container = this.element.querySelector(".lightbox__container");
-    const loader = document.createElement("div");
-    loader.classList.add("lightbox__loader");
+    const imageTitle = document.createElement("p");
+    imageTitle.classList.add("lightbox__title");
+    imageTitle.textContent = "";
     container.innerHTML = "";
-    container.appendChild(loader);
     image.onload = () => {
-      container.removeChild(loader);
       container.appendChild(image);
+      container.appendChild(imageTitle);
       this.url = url;
+      imageTitle.textContent = this.titles;
     };
     image.src = url;
   }
@@ -291,7 +319,9 @@ class Lightbox {
     <i class="lightbox__prev fas fa-chevron-left"></i>
     <i class="lightbox__next fas fa-chevron-right"></i>
     <div class="lightbox__container">
-    </div>`;
+    </div>
+    `;
+
     lightbox
       .querySelector(".lightbox__close")
       .addEventListener("click", this.close.bind(this));
