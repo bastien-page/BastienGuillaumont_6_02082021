@@ -393,7 +393,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10%;
+  margin: 10% 0;
 }
 .lightbox__container img,
 .lightbox__container video {
@@ -431,6 +431,8 @@ footer {
 .lightbox__title {
   font-size: 2rem;
   color: #901c1c;
+  align-self: flex-start;
+  margin: 0 10%;
 }
 
 body {

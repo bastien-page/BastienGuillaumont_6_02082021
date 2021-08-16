@@ -242,6 +242,7 @@ class Lightbox {
       (link) => link.firstElementChild.attributes.alt.value
     );
     console.log(titles);
+    console.log(images);
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -261,6 +262,12 @@ class Lightbox {
   }
 
   loadImage(url) {
+    // Avoir pour optimiser
+    const links = Array.from(
+      document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
+    );
+    const images = links.map((link) => link.getAttribute("href"));
+    ////
     this.url = null;
     const image = document.createElement("img");
     const video = document.createElement("video");
@@ -271,19 +278,19 @@ class Lightbox {
     imageTitle.classList.add("lightbox__title");
     imageTitle.textContent = "";
     container.innerHTML = "";
+    console.log(url);
+    console.log(images.indexOf(url));
     if (url.includes(".mp4")) {
-      console.log("je suis une video ");
       container.appendChild(video);
       container.appendChild(imageTitle);
       this.url = url;
-      imageTitle.textContent = this.titles;
+      imageTitle.textContent = this.titles[images.indexOf(url)];
     }
-    image.onload = () => {
-      container.appendChild(image);
-      container.appendChild(imageTitle);
-      this.url = url;
-      imageTitle.textContent = this.titles;
-    };
+    container.appendChild(image);
+    container.appendChild(imageTitle);
+    this.url = url;
+    imageTitle.textContent = this.titles[images.indexOf(url)];
+
     image.src = url;
     video.src = url;
   }
