@@ -97,10 +97,12 @@ const createGallery = (media) => {
   } else {
     gallery.innerHTML += `
           <figure class="cardphoto">
-          <a href="../img/gallerie/${media.image}">
+          <a href="../img/gallerie/${media.video}">
                 <video
                   class="cardphoto__picture"
+                  type="video/mp4"
                   src="../img/gallerie/${media.video} "
+                  controls
                   alt="${media.title}"
                 />
                 
@@ -233,12 +235,12 @@ const totalLikes = () => {
 class Lightbox {
   static init() {
     const links = Array.from(
-      document.querySelectorAll(
-        'a[href$=".jpg"], a[href$=".jpeg"],a[href$=".png"]'
-      )
+      document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
     );
     const images = links.map((link) => link.getAttribute("href"));
-    const titles = links.map((link) => link.lastElementChild.alt);
+    const titles = links.map(
+      (link) => link.firstElementChild.attributes.alt.value
+    );
     console.log(titles);
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
@@ -260,12 +262,22 @@ class Lightbox {
 
   loadImage(url) {
     this.url = null;
-    const image = new Image();
+    const image = document.createElement("img");
+    const video = document.createElement("video");
+    video.setAttribute("type", "video/mp4");
+    video.setAttribute("controls", "controls");
     const container = this.element.querySelector(".lightbox__container");
     const imageTitle = document.createElement("p");
     imageTitle.classList.add("lightbox__title");
     imageTitle.textContent = "";
     container.innerHTML = "";
+    if (url.includes(".mp4")) {
+      console.log("je suis une video ");
+      container.appendChild(video);
+      container.appendChild(imageTitle);
+      this.url = url;
+      imageTitle.textContent = this.titles;
+    }
     image.onload = () => {
       container.appendChild(image);
       container.appendChild(imageTitle);
@@ -273,6 +285,7 @@ class Lightbox {
       imageTitle.textContent = this.titles;
     };
     image.src = url;
+    video.src = url;
   }
 
   onKeyUp(e) {
