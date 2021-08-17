@@ -98,6 +98,57 @@ h1 {
   padding: 10px 20px;
 }
 
+.filterpicture {
+  display: flex;
+  margin-left: 40px;
+}
+.filterpicture__active {
+  height: auto;
+  overflow: initial;
+}
+.filterpicture__title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding-top: 1rem;
+}
+.filterpicture__bloc {
+  display: flex;
+  background-color: #901c1c;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-left: 2rem;
+}
+.filterpicture__link {
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 1rem 3rem 1rem 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+.filterpicture__link:nth-last-child(1) {
+  border: none;
+  padding-bottom: 0.5rem;
+}
+.filterpicture__link:first-child {
+  padding-top: 0.5rem;
+}
+.filterpicture__icon i {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  padding-top: 0.5rem;
+}
+.filterpicture hr {
+  border-bottom: white 1px solid;
+  width: 115%;
+}
+
+.invisible {
+  height: 70px;
+  overflow: hidden;
+}
+
 .cardphoto {
   width: 350px;
   height: 350px;
@@ -435,6 +486,11 @@ footer {
   margin: 0 10%;
 }
 
+@media screen and (max-width: 1050px) {
+  .lightbox__container {
+    height: 100vh;
+  }
+}
 body {
   margin: 0 auto;
   max-width: 1700px;

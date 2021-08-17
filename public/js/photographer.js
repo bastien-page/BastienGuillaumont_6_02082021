@@ -29,11 +29,13 @@ async function createPage() {
   medias = medias.filter((element) => {
     return element.photographerId == hash;
   });
+  console.log(medias);
   medias.map((media) => createGallery(media));
   viewModal();
   totalLikes();
   addLike();
   Lightbox.init();
+  menuFilter();
 }
 
 // On recupere le Hash
@@ -241,8 +243,6 @@ class Lightbox {
     const titles = links.map(
       (link) => link.firstElementChild.attributes.alt.value
     );
-    console.log(titles);
-    console.log(images);
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -278,8 +278,6 @@ class Lightbox {
     imageTitle.classList.add("lightbox__title");
     imageTitle.textContent = "";
     container.innerHTML = "";
-    console.log(url);
-    console.log(images.indexOf(url));
     if (url.includes(".mp4")) {
       container.appendChild(video);
       container.appendChild(imageTitle);
@@ -354,3 +352,52 @@ class Lightbox {
     return lightbox;
   }
 }
+
+// Fonction pour le tri de la gallerie
+const menuFilter = () => {
+  const icon = document.querySelector(".filterpicture__icon");
+  const menu = document.querySelector(".filterpicture__bloc");
+  const gallery = document.querySelector(".pictureGallery");
+  const links = Array.from(document.querySelectorAll(".filterpicture__link"));
+
+  let id;
+
+  icon.addEventListener("click", () => {
+    menu.classList.toggle("invisible");
+  });
+
+  links.forEach((link) =>
+    link.addEventListener("click", () => {
+      menu.classList.add("invisible");
+      id = link.id;
+      // tri par date
+      if (id == "date") {
+        medias.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+        gallery.innerHTML = "";
+        medias.map((media) => createGallery(media));
+      }
+      // tri par likes
+      else if (id == "popular") {
+        medias.sort(function (a, b) {
+          if (a.likes > b.likes) {
+            return -1;
+          }
+        });
+        gallery.innerHTML = "";
+        medias.map((media) => createGallery(media));
+      }
+      // tri par titre
+      else if (id == "title") {
+        medias.sort(function (a, b) {
+          if (a.title < b.title) {
+            return -1;
+          }
+        });
+        gallery.innerHTML = "";
+        medias.map((media) => createGallery(media));
+      }
+    })
+  );
+};
