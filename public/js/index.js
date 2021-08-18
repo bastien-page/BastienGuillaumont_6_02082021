@@ -16,6 +16,11 @@ fetchUser("FishEyeData.json").then((data) => {
   photographers = data.photographers;
   media = data.media;
   photographers.map((photographer) => createPhotographerProfile(photographer));
+
+  // photographers = photographers.filter((element) => {
+  //   return element.tags.includes("sport");
+  // });
+
   console.log(photographers);
   console.log(media);
   btnScroll();
@@ -61,25 +66,15 @@ const createTags = (tags) => {
 
 // Filters selection
 
-let activeFilters = [];
+let activeFilters = null;
 function addfilter() {
   const filters = document.querySelectorAll(".filter");
   for (let filter of filters) {
+    console.log(filter);
     filter.addEventListener("click", (e) => {
-      /// on supprimer le filtre selectionné
-      if (activeFilters.includes(e.target.id)) {
-        let index = activeFilters.indexOf(e.target.id);
-        if (index > -1) {
-          activeFilters.splice(index, 1);
-        }
-        console.log(activeFilters);
-      }
-      // on ajoute le filtre selectionné
-      else {
-        activeFilters.push(e.target.id);
-        console.log(activeFilters);
-      }
-      filter.classList.toggle("filter-selected");
+      activeFilters = e.target.id;
+      filter.classList.add("filter-selected");
+      console.log(activeFilters);
     });
   }
   return activeFilters;

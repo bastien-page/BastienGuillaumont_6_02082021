@@ -17,17 +17,17 @@ fetchUser().then((data) => {
   medias = data.media;
 });
 
-window.addEventListener("load", createPage());
+window.addEventListener("DOMContentLoaded", createPage());
 async function createPage() {
   await fetchUser();
-  recupHash();
+  //recupHash();
   photographers = photographers.filter((element) => {
-    return element.id == hash;
+    return element.id == recupHash();
   });
   photographers.map((photographer) => createPhotographerInfo(photographer));
   photographers.map((photographer) => createFooter(photographer));
   medias = medias.filter((element) => {
-    return element.photographerId == hash;
+    return element.photographerId == recupHash();
   });
   console.log(medias);
   medias.map((media) => createGallery(media));
@@ -278,19 +278,16 @@ class Lightbox {
     imageTitle.classList.add("lightbox__title");
     imageTitle.textContent = "";
     container.innerHTML = "";
-    if (url.includes(".mp4")) {
-      container.appendChild(video);
-      container.appendChild(imageTitle);
-      this.url = url;
-      imageTitle.textContent = this.titles[images.indexOf(url)];
-    }
-    container.appendChild(image);
-    container.appendChild(imageTitle);
     this.url = url;
     imageTitle.textContent = this.titles[images.indexOf(url)];
-
-    image.src = url;
-    video.src = url;
+    if (url.includes(".mp4")) {
+      container.appendChild(video);
+      video.src = url;
+    } else {
+      container.appendChild(image);
+      image.src = url;
+    }
+    container.appendChild(imageTitle);
   }
 
   onKeyUp(e) {
@@ -366,9 +363,12 @@ const menuFilter = () => {
     menu.classList.toggle("invisible");
   });
 
+  console.log(links);
+
   links.forEach((link) =>
     link.addEventListener("click", () => {
       menu.classList.add("invisible");
+
       id = link.id;
       // tri par date
       if (id == "date") {
@@ -377,6 +377,11 @@ const menuFilter = () => {
         });
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
+        viewModal();
+        totalLikes();
+        addLike();
+        Lightbox.init();
+        menuFilter();
       }
       // tri par likes
       else if (id == "popular") {
@@ -387,6 +392,11 @@ const menuFilter = () => {
         });
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
+        viewModal();
+        totalLikes();
+        addLike();
+        Lightbox.init();
+        menuFilter();
       }
       // tri par titre
       else if (id == "title") {
@@ -397,6 +407,11 @@ const menuFilter = () => {
         });
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
+        viewModal();
+        totalLikes();
+        addLike();
+        Lightbox.init();
+        menuFilter();
       }
     })
   );
