@@ -11,16 +11,18 @@ const fetchUser = async (url) => {
 
 // On traite la Data
 let photographers;
+let photographersReset;
 let media;
 fetchUser("FishEyeData.json").then((data) => {
   photographers = data.photographers;
+  photographersReset = data.photographers;
   media = data.media;
   photographers.map((photographer) => createPhotographerProfile(photographer));
 
   // photographers = photographers.filter((element) => {
-  //   return element.tags.includes("sport");
+  //   return element.tags.includes("fashion");
   // });
-
+  // photographers.map((photographer) => createPhotographerProfile(photographer));
   console.log(photographers);
   console.log(media);
   btnScroll();
@@ -31,10 +33,15 @@ fetchUser("FishEyeData.json").then((data) => {
  *         PAGE INDEX            *
  ****************************** */
 
+// photographers = photographers.filter((element) => {
+//   return element.tags.includes("sport");
+// });
+
 // Creation de cards Profil Photographe
 
 const createPhotographerProfile = (photographer) => {
   const main = document.querySelector("main");
+
   main.setAttribute("id", "main");
   main.innerHTML += `
   <div class="card">
@@ -66,18 +73,32 @@ const createTags = (tags) => {
 
 // Filters selection
 
-let activeFilters = null;
 function addfilter() {
-  const filters = document.querySelectorAll(".filter");
-  for (let filter of filters) {
-    console.log(filter);
+  let activeFilters = null;
+  const filters = Array.from(document.querySelectorAll(".filter"));
+  filters.forEach((filter) => {
     filter.addEventListener("click", (e) => {
-      activeFilters = e.target.id;
-      filter.classList.add("filter-selected");
-      console.log(activeFilters);
+      if (activeFilters === null) {
+        activeFilters = e.target.id;
+        photographers = photographers.filter((element) => {
+          return element.tags.includes(activeFilters);
+        });
+        main.innerHTML = "";
+        photographers.map((photographer) =>
+          createPhotographerProfile(photographer)
+        );
+        filter.classList.add("filter-selected");
+      } else if (activeFilters === e.target.id) {
+        activeFilters = null;
+        filter.classList.remove("filter-selected");
+        main.innerHTML = "";
+        photographers = photographersReset;
+        photographers.map((photographer) =>
+          createPhotographerProfile(photographer)
+        );
+      }
     });
-  }
-  return activeFilters;
+  });
 }
 
 // Création du Bouton scroll et ajout de l'écouteur

@@ -4,6 +4,7 @@
   align-items: center;
   margin: 0 auto;
   text-align: center;
+  max-width: 320px;
   a {
     padding: 10px;
   }
@@ -41,4 +42,8 @@
       @include filter;
     }
   }
+}
+
+.card:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

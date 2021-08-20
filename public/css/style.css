@@ -31,6 +31,7 @@ h1 {
   align-items: center;
   margin: 0 auto;
   text-align: center;
+  max-width: 320px;
 }
 .card a {
   padding: 10px;
@@ -78,6 +79,10 @@ h1 {
 .card__tag-filter:hover, .card__tag-filter-selected {
   background-color: #901c1c;
   color: white;
+}
+
+.card:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .btn {
