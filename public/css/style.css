@@ -222,6 +222,10 @@ h1 {
     top: 3px;
     font-size: 0.8rem;
   }
+
+  .filterpicture {
+    display: none;
+  }
 }
 header {
   display: grid;
@@ -333,6 +337,26 @@ footer {
   margin-right: 20px;
 }
 
+@media screen and (max-width: 800px) {
+  footer {
+    position: inherit;
+    margin: 0 auto;
+    height: 30px;
+    width: 280px;
+  }
+
+  .like__compter {
+    font-size: 1rem;
+  }
+
+  .like__icon {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+}
 .bground {
   background-color: white;
   display: none;
@@ -527,12 +551,12 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-  main {
+  .main {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 500px) {
-  main {
+  .main {
     grid-template-columns: 1fr;
   }
 }
@@ -579,7 +603,7 @@ body {
   color: white;
 }
 .photographer__btn {
-  margin-top: 20px;
+  margin-right: 100px;
 }
 .photographer__pp {
   align-self: center;
@@ -614,9 +638,6 @@ body {
   .photographer__pp img {
     margin-right: 30px;
   }
-  .photographer__btn {
-    margin-right: 20px;
-  }
 }
 @media screen and (max-width: 800px) {
   .pictureGallery {
@@ -631,7 +652,7 @@ body {
 
   .photographer__btn .contact {
     position: fixed;
-    bottom: 15px;
+    bottom: 35px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #901c1c;

@@ -28,3 +28,21 @@ footer {
   font-size: 1.8rem;
   margin-right: 20px;
 }
+
+@media screen and (max-width: $breakpointpad) {
+  footer {
+    position: inherit;
+    margin: 0 auto;
+    height: 30px;
+    width: 280px;
+  }
+  .like__compter {
+    font-size: 1rem;
+  }
+  .like__icon {
+    font-size: 1rem;
+  }
+  .price {
+    font-size: 1rem;
+  }
+}

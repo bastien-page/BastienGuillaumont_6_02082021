@@ -122,7 +122,7 @@ const createGallery = (media) => {
 };
 
 // Creation de la modal de contact
-const createModalContact = () => {
+const createModalContact = (photographer) => {
   const main = document.querySelector("main");
   main.innerHTML += `
   <div class="bground">
@@ -130,7 +130,7 @@ const createModalContact = () => {
     <span class="modal__close"></span>
     <div class="modal__title">
       Contactez-moi <br />
-      A MODIFIER 
+      ${photographer.name}
     </div>
     <form action="">
       <label class="modal__label" for="first">Prénom</label>
@@ -184,7 +184,7 @@ const createFooter = (photographer) => {
 
 // Affichage de la modal
 const viewModal = () => {
-  createModalContact();
+  photographers.map((photographer) => createModalContact(photographer));
   const iconModal = document.querySelector(".modal__close");
   const btnContact = document.querySelector(".contact");
   // OUverture modal

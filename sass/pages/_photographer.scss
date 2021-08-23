@@ -32,7 +32,7 @@
     }
   }
   &__btn {
-    margin-top: 20px;
+    margin-right: 100px;
   }
   &__pp {
     align-self: center;
@@ -68,9 +68,6 @@
     &__pp img {
       margin-right: 30px;
     }
-    &__btn {
-      margin-right: 20px;
-    }
   }
 }
 
@@ -86,7 +83,7 @@
   .photographer {
     &__btn .contact {
       position: fixed;
-      bottom: 15px;
+      bottom: 35px;
       left: 50%;
       transform: translateX(-50%);
       background-color: $colorprimary;
