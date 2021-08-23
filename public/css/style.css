@@ -616,6 +616,10 @@ body {
   margin-right: 50px;
 }
 
+.contact {
+  white-space: nowrap;
+}
+
 .pictureGallery {
   margin: 100px 0;
   display: grid;

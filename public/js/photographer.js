@@ -366,8 +366,10 @@ const menuFilter = () => {
   console.log(links);
 
   links.forEach((link) =>
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (e) => {
       menu.classList.add("invisible");
+
+      console.log(e);
 
       id = link.id;
       // tri par date

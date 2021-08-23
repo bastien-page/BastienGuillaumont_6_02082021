@@ -96,6 +96,19 @@ function addfilter() {
         photographers.map((photographer) =>
           createPhotographerProfile(photographer)
         );
+      } else if (activeFilters != e.target.id) {
+        console.log("dlkvhefobi");
+        filters.forEach((filter) => filter.classList.remove("filter-selected"));
+        filter.classList.add("filter-selected");
+        photographers = photographersReset;
+        activeFilters = e.target.id;
+        photographers = photographers.filter((element) => {
+          return element.tags.includes(activeFilters);
+        });
+        main.innerHTML = "";
+        photographers.map((photographer) =>
+          createPhotographerProfile(photographer)
+        );
       }
     });
   });
