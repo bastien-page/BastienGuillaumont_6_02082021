@@ -1,5 +1,3 @@
-let main = document.querySelector("main");
-
 /* *******************************
  *     RECUPERATION DE LA DATA   *
  ****************************** */
@@ -20,7 +18,8 @@ fetchUser("FishEyeData.json").then((data) => {
   photographersReset = data.photographers;
   media = data.media;
   photographers.map(
-    (photographer) => new PhotographerCreateCard(main, photographer)
+    (photographer) =>
+      new PhotographerCreateCard(document.querySelector("main"), photographer)
   );
 
   console.log(photographers);
@@ -99,6 +98,7 @@ class PhotographerCreateCard {
 
 function addfilter() {
   let activeFilters = null;
+  let main = document.querySelector("main");
   const filters = Array.from(document.querySelectorAll(".filter"));
   filters.forEach((filter) => {
     filter.addEventListener("click", (e) => {
@@ -108,6 +108,7 @@ function addfilter() {
           return element.tags.includes(activeFilters);
         });
         main.innerHTML = "";
+        console.log(photographers);
         photographers.map(
           (photographer) => new PhotographerCreateCard(main, photographer)
         );
