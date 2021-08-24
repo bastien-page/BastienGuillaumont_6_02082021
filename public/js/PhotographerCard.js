@@ -33,7 +33,7 @@ class PhotographerCreateCard {
 
     link.setAttribute(
       "href",
-      "./html/photogrpaher-page.html#" + photographer.id
+      "./html/photographerpage.html#" + photographer.id
     );
     pictureProfil.setAttribute(
       "src",

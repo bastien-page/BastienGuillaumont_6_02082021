@@ -1,3 +1,5 @@
+let main = document.querySelector("main");
+
 /* *******************************
  *     RECUPERATION DE LA DATA   *
  ****************************** */
@@ -17,12 +19,10 @@ fetchUser("FishEyeData.json").then((data) => {
   photographers = data.photographers;
   photographersReset = data.photographers;
   media = data.media;
-  photographers.map((photographer) => createPhotographerProfile(photographer));
+  photographers.map(
+    (photographer) => new PhotographerCreateCard(main, photographer)
+  );
 
-  // photographers = photographers.filter((element) => {
-  //   return element.tags.includes("fashion");
-  // });
-  // photographers.map((photographer) => createPhotographerProfile(photographer));
   console.log(photographers);
   console.log(media);
   btnScroll();
@@ -33,43 +33,67 @@ fetchUser("FishEyeData.json").then((data) => {
  *         PAGE INDEX            *
  ****************************** */
 
-// photographers = photographers.filter((element) => {
-//   return element.tags.includes("sport");
-// });
-
 // Creation de cards Profil Photographe
 
-const createPhotographerProfile = (photographer) => {
-  const main = document.querySelector("main");
+class PhotographerCreateCard {
+  constructor(selector, photographer) {
+    this.selector = selector;
+    this.photographer = photographer;
+    this.buildCard(photographer);
+  }
 
-  main.setAttribute("id", "main");
-  main.innerHTML += `
-  <div class="card">
-    <a href="./html/photographerpage.html#${photographer.id}">
-      <img
-        class="card__photo"
-        src="./img/IDPhotos/${photographer.portrait}".jpg"
-        alt="Photo de profil"
-      />
-      <p class="card__name">${photographer.name}</p>
-      <p class="card__location">${photographer.city}, ${
-    photographer.country
-  }</p>
-      <p class="card__slogan">${photographer.tagline}</p>
-      <p class="card__price">${photographer.price}€/jour</p>
-      <div class="card__tag">${createTags(photographer.tags)}</div>
-    </a>
-  </div>`;
-};
+  buildCard(photographer) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    const link = document.createElement("a");
+    const pictureProfil = document.createElement("img");
+    pictureProfil.classList.add("card__photo");
+    const name = document.createElement("p");
+    name.classList.add("card__name");
+    const city = document.createElement("p");
+    city.classList.add("card__location");
+    const slogan = document.createElement("p");
+    slogan.classList.add("card__slogan");
+    const price = document.createElement("p");
+    price.classList.add("card__price");
+    const tags = document.createElement("div");
+    tags.classList.add("card__tag");
 
-// Creation de chaque tag sur la card
-const createTags = (tags) => {
-  let addTag = "";
-  tags.forEach((tag) => {
-    addTag += `<div class="card__tag-filter">#${tag}</div>`;
-  });
-  return addTag;
-};
+    this.selector.appendChild(card);
+    card.appendChild(link);
+    link.appendChild(pictureProfil);
+    link.appendChild(name);
+    link.appendChild(city);
+    link.appendChild(slogan);
+    link.appendChild(price);
+    link.appendChild(tags);
+
+    link.setAttribute(
+      "href",
+      "./html/photographerpage.html#" + photographer.id
+    );
+    pictureProfil.setAttribute(
+      "src",
+      "./img/IDPhotos/" + photographer.portrait
+    );
+    name.innerText = photographer.name;
+    city.innerText = photographer.city + ", " + photographer.country;
+    slogan.innerText = photographer.tagline;
+    price.innerText = photographer.price + "€/jour";
+
+    tags.innerHTML = this.createTag(photographer.tags);
+
+    return card;
+  }
+
+  createTag(tags) {
+    let addTag = "";
+    tags.forEach((tag) => {
+      addTag += `<div class="card__tag-filter">#${tag}</div>`;
+    });
+    return addTag;
+  }
+}
 
 // Filters selection
 
@@ -84,8 +108,8 @@ function addfilter() {
           return element.tags.includes(activeFilters);
         });
         main.innerHTML = "";
-        photographers.map((photographer) =>
-          createPhotographerProfile(photographer)
+        photographers.map(
+          (photographer) => new PhotographerCreateCard(main, photographer)
         );
         filter.classList.add("filter-selected");
       } else if (activeFilters === e.target.id) {
@@ -93,11 +117,10 @@ function addfilter() {
         filter.classList.remove("filter-selected");
         main.innerHTML = "";
         photographers = photographersReset;
-        photographers.map((photographer) =>
-          createPhotographerProfile(photographer)
+        photographers.map(
+          (photographer) => new PhotographerCreateCard(main, photographer)
         );
       } else if (activeFilters != e.target.id) {
-        console.log("dlkvhefobi");
         filters.forEach((filter) => filter.classList.remove("filter-selected"));
         filter.classList.add("filter-selected");
         photographers = photographersReset;
@@ -106,8 +129,8 @@ function addfilter() {
           return element.tags.includes(activeFilters);
         });
         main.innerHTML = "";
-        photographers.map((photographer) =>
-          createPhotographerProfile(photographer)
+        photographers.map(
+          (photographer) => new PhotographerCreateCard(main, photographer)
         );
       }
     });
