@@ -18,6 +18,16 @@
   padding: 30px;
   border-radius: 5px;
   position: relative;
+  &__message {
+    display: none;
+    background-color: $colorprimary;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 10px 20px;
+    float: right;
+  }
   &__title {
     font-size: 4rem;
     margin-bottom: 20px;
@@ -32,11 +42,6 @@
     border-radius: 5px;
     margin: 10px 0;
     padding: 5px 10px;
-  }
-  &__error {
-    color: red;
-    font-size: 1rem;
-    float: right;
   }
   &__close {
     position: absolute;
@@ -68,11 +73,7 @@
 .last,
 .email,
 .message {
-  display: none;
-}
-
-.error-label {
-  display: inherit;
+  display: initial;
   color: red;
   font-size: 1rem;
   float: right;

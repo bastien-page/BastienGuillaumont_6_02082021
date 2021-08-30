@@ -21,7 +21,6 @@ fetchUser("FishEyeData.json").then((data) => {
     (photographer) =>
       new PhotographerCreateCard(document.querySelector("main"), photographer)
   );
-
   console.log(photographers);
   console.log(media);
   btnScroll();
@@ -33,7 +32,6 @@ fetchUser("FishEyeData.json").then((data) => {
  ****************************** */
 
 // Creation de cards Profil Photographe
-
 class PhotographerCreateCard {
   constructor(selector, photographer) {
     this.selector = selector;
@@ -94,8 +92,7 @@ class PhotographerCreateCard {
   }
 }
 
-// Filters selection
-
+// Filters selection des photographes
 function addfilter() {
   let activeFilters = null;
   let main = document.querySelector("main");

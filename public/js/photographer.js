@@ -20,7 +20,7 @@ fetchUser().then((data) => {
 window.addEventListener("DOMContentLoaded", createPage());
 async function createPage() {
   await fetchUser();
-  //recupHash();
+  recupHash();
   photographers = photographers.filter((element) => {
     return element.id == recupHash();
   });
@@ -36,6 +36,7 @@ async function createPage() {
   addLike();
   Lightbox.init();
   menuFilter();
+  filterReturn();
 }
 
 // On recupere le Hash
@@ -56,9 +57,13 @@ const createPhotographerInfo = (photographer) => {
         <p class="photographer__slogan">${photographer.tagline}</p>
         <div class="photographer__tag">${createTags(photographer.tags)}</div>
       </div>
+
+
       <div class="photographer__btn">
         <button class="btn contact">Contactez-moi</button>
       </div>
+
+      
       <div class="photographer__pp">
         <img src="../img/IDPhotos/${photographer.portrait}" alt="" />
         </div>`;
@@ -164,6 +169,7 @@ const createModalContact = (photographer) => {
         class="button"
         value="Envoyer"
       />
+      <p class="modal__message">Votre message a été envoyé</p>
     </form>
   </div>
 </div>
@@ -182,27 +188,113 @@ const createFooter = (photographer) => {
   </div>`;
 };
 
-// Affichage de la modal
+/// GESTION DU FORMULAIRE
+
 const viewModal = () => {
   photographers.map((photographer) => createModalContact(photographer));
   const iconModal = document.querySelector(".modal__close");
   const btnContact = document.querySelector(".contact");
-  // OUverture modal
+
+  // Ouverture modal
   btnContact.addEventListener("click", () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "initial";
   });
+
   //Fermeture modal
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Escape") {
-      modal.style.display = "none";
-    }
-  });
   iconModal.addEventListener("click", () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "none";
+    document.querySelector(".modal__message").style.display = "none";
     form.reset();
   });
+
+  // Traitement du formulaire
+  const form = document.querySelector("form"); // Formulaire
+  // Regex
+  const nameReg = new RegExp(/^[a-zA-Z\-]{2,}$/i); //Regex name qui ne doit comporter que des lettres et 2 caractères min
+  const emailReg = new RegExp(/^[\w\_\.\-]+@[\w]+.[a-z]{2,3}$/i); //Regex mail
+  const messReg = new RegExp(/^[\w\s\D]{30,}$/i); //Regex message 30 caractères min
+
+  // DOM Formulaire
+  const first = document.getElementById("first"); // DOM Formulaire Prénom
+  const last = document.getElementById("last"); // DOM Formulaire Nom
+  const email = document.getElementById("email"); // Formulaire E-mail
+  const message = document.getElementById("message"); // Formulaire E-mail
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (isFormValid() === true) {
+      document.querySelector(".modal__message").style.display = "initial";
+      form.reset();
+    }
+  });
+
+  // Verification du prémon
+  function isFirstValid() {
+    let error = document.querySelector(".first");
+    if (!nameReg.test(first.value)) {
+      error.textContent = "Veuillez entrer au moins deux caractères";
+      first.classList.add("error-input");
+      return false;
+    } else {
+      first.classList.remove("error-input");
+      error.textContent = "";
+      return true;
+    }
+  }
+  // Verification du nom
+  function isLastValid() {
+    let error = document.querySelector(".last");
+    if (!nameReg.test(last.value)) {
+      error.textContent = "Veuillez entrer au moins deux caractères";
+      last.classList.add("error-input");
+      return false;
+    } else {
+      last.classList.remove("error-input");
+      error.textContent = "";
+      return true;
+    }
+  }
+  // Verification de l'email
+  function isEmailValid() {
+    let error = document.querySelector(".email");
+    if (!emailReg.test(email.value)) {
+      error.textContent = "Veuillez entrer une adresse mail valide";
+      email.classList.add("error-input");
+      return false;
+    } else {
+      email.classList.remove("error-input");
+      error.textContent = "";
+      return true;
+    }
+  }
+  // Verification du message
+  function isMessageValid() {
+    let error = document.querySelector(".message");
+    if (!messReg.test(message.value)) {
+      error.textContent = "Votre message doit comporter au moins 30 caractères";
+      message.classList.add("error-input");
+      return false;
+    } else {
+      message.classList.remove("error-input");
+      error.textContent = "";
+      return true;
+    }
+  }
+  // Verification du formulaire
+  function isFormValid() {
+    if (
+      isFirstValid() === false ||
+      isLastValid() === false ||
+      isEmailValid() === false ||
+      isMessageValid() === false
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 };
 
 // On ajoute les likes au click
@@ -233,7 +325,6 @@ const totalLikes = () => {
 };
 
 // Creation de la Lightbox
-
 class Lightbox {
   static init() {
     const links = Array.from(
@@ -370,7 +461,6 @@ const menuFilter = () => {
       menu.classList.add("invisible");
 
       console.log(e);
-
       id = link.id;
       // tri par date
       if (id == "date") {
@@ -380,7 +470,6 @@ const menuFilter = () => {
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
         viewModal();
-        totalLikes();
         addLike();
         Lightbox.init();
         menuFilter();
@@ -395,7 +484,6 @@ const menuFilter = () => {
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
         viewModal();
-        totalLikes();
         addLike();
         Lightbox.init();
         menuFilter();
@@ -410,11 +498,22 @@ const menuFilter = () => {
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
         viewModal();
-        totalLikes();
         addLike();
         Lightbox.init();
         menuFilter();
       }
+    })
+  );
+};
+
+const filterReturn = () => {
+  const filters = Array.from(
+    document.querySelectorAll(".photographer__tag__filters")
+  );
+  filters.forEach((filter) =>
+    filter.addEventListener("click", (e) => {
+      activeFilters = e.target.textContent.slice(1);
+      return activeFilters;
     })
   );
 };
