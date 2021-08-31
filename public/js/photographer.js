@@ -73,7 +73,7 @@ const createPhotographerInfo = (photographer) => {
 const createTags = (tags) => {
   let addTag = "";
   tags.forEach((tag) => {
-    addTag += `<div class="photographer__tag__filters">#${tag}</div>`;
+    addTag += `<a href="../index.html" class="photographer__tag__filters">#${tag}</a>`;
   });
   return addTag;
 };
@@ -443,25 +443,29 @@ class Lightbox {
 
 // Fonction pour le tri de la gallerie
 const menuFilter = () => {
-  const icon = document.querySelector(".filterpicture__icon");
+  const iconBtn = document.querySelector(".filterpicture__icon");
+  const icon = document.querySelector(".fas");
   const menu = document.querySelector(".filterpicture__bloc");
   const gallery = document.querySelector(".pictureGallery");
-  const links = Array.from(document.querySelectorAll(".filterpicture__link"));
+  let links = Array.from(document.querySelectorAll(".filterpicture__link"));
 
   let id;
 
-  icon.addEventListener("click", () => {
+  iconBtn.addEventListener("click", () => {
     menu.classList.toggle("invisible");
+    icon.classList.toggle("rotate");
   });
 
   console.log(links);
+  console.log(id);
 
   links.forEach((link) =>
     link.addEventListener("click", (e) => {
       menu.classList.add("invisible");
-
-      console.log(e);
+      icon.classList.remove("rotate");
       id = link.id;
+
+      console.log(id);
       // tri par date
       if (id == "date") {
         medias.sort(function (a, b) {
@@ -512,8 +516,9 @@ const filterReturn = () => {
   );
   filters.forEach((filter) =>
     filter.addEventListener("click", (e) => {
-      activeFilters = e.target.textContent.slice(1);
-      return activeFilters;
+      var filterSelected = e.target.textContent.slice(1);
+      console.log(filterSelected);
+      return filterSelected;
     })
   );
 };

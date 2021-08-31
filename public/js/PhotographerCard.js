@@ -1,4 +1,4 @@
-class PhotographerCreateCard {
+export default class PhotographerCreateCard {
   constructor(selector, photographer) {
     this.selector = selector;
     this.photographer = photographer;
@@ -37,7 +37,7 @@ class PhotographerCreateCard {
     );
     pictureProfil.setAttribute(
       "src",
-      "../img/IDPhotos/" + photographer.portrait
+      "../public/img/IDPhotos/" + photographer.portrait
     );
     name.innerText = photographer.name;
     city.innerText = photographer.city + ", " + photographer.country;

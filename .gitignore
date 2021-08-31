@@ -4,3 +4,4 @@
 *.scss.map
 
 package.json
+node_modules/

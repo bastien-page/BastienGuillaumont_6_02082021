@@ -107,10 +107,6 @@ h1 {
   display: flex;
   margin-left: 40px;
 }
-.filterpicture__active {
-  height: auto;
-  overflow: initial;
-}
 .filterpicture__title {
   font-weight: 700;
   font-size: 1.5rem;
@@ -118,39 +114,44 @@ h1 {
 }
 .filterpicture__bloc {
   display: flex;
+  flex-direction: column;
   background-color: #901c1c;
-  padding: 1rem;
+  padding: 1.5rem 4rem 1.3rem 1.3rem;
   border-radius: 5px;
   margin-left: 2rem;
 }
 .filterpicture__link {
+  background-color: #901c1c;
   color: white;
   font-weight: 700;
   font-size: 1.5rem;
-  padding: 1rem 3rem 1rem 1rem;
   cursor: pointer;
-  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+  padding: 0 0 1rem 1rem;
+  border-bottom: 1px solid white;
+  width: 140%;
 }
 .filterpicture__link:nth-last-child(1) {
   border: none;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0;
+  padding-bottom: 0.3rem;
 }
-.filterpicture__link:first-child {
-  padding-top: 0.5rem;
-}
-.filterpicture__icon i {
+.filterpicture__icon {
   font-size: 2rem;
   color: white;
   cursor: pointer;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  position: relative;
+  right: 40px;
 }
-.filterpicture hr {
-  border-bottom: white 1px solid;
-  width: 115%;
+
+.rotate {
+  transform: rotateX(180deg);
 }
 
 .invisible {
-  height: 70px;
+  height: 68px;
   overflow: hidden;
 }
 

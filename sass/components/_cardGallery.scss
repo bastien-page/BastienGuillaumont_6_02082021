@@ -1,10 +1,6 @@
 .filterpicture {
   display: flex;
   margin-left: 40px;
-  &__active {
-    height: auto;
-    overflow: initial;
-  }
   &__title {
     font-weight: 700;
     font-size: 1.5rem;
@@ -12,41 +8,45 @@
   }
   &__bloc {
     display: flex;
+    flex-direction: column;
     background-color: $colorprimary;
-    padding: 1rem;
+    padding: 1.5rem 4rem 1.3rem 1.3rem;
     border-radius: 5px;
     margin-left: 2rem;
   }
   &__link {
+    background-color: $colorprimary;
     color: white;
     font-weight: 700;
     font-size: 1.5rem;
-    padding: 1rem 3rem 1rem 1rem;
     cursor: pointer;
-    width: 100%;
-
+    text-align: left;
+    margin-bottom: 1rem;
+    padding: 0 0 1rem 1rem;
+    border-bottom: 1px solid white;
+    width: 140%;
     &:nth-last-child(1) {
       border: none;
-      padding-bottom: 0.5rem;
-    }
-    &:first-child {
-      padding-top: 0.5rem;
+      margin-bottom: 0;
+      padding-bottom: 0.3rem;
     }
   }
-  &__icon i {
+  &__icon {
     font-size: 2rem;
     color: white;
     cursor: pointer;
-    padding-top: 0.5rem;
-  }
-  hr {
-    border-bottom: white 1px solid;
-    width: 115%;
+    padding-top: 1rem;
+    position: relative;
+    right: 40px;
   }
 }
 
+.rotate {
+  transform: rotateX(180deg);
+}
+
 .invisible {
-  height: 70px;
+  height: 68px;
   overflow: hidden;
 }
 
