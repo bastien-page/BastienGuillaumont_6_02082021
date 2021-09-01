@@ -1,5 +1,5 @@
-//export default filterReturn;
-export function filterReturn() {}
+import Lightbox form 'Lightbox'
+
 /* *******************************
  *     RECUPERATION DE LA DATA   *
  ****************************** */

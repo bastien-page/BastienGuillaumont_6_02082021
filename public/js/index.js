@@ -1,6 +1,4 @@
-//import PhotographerCreateCard from "./PhotographerCard.js";
-
-import { filterReturn } from "./photographer.js";
+import PhotographerCreateCard from "./PhotographerCard.js";
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *
@@ -29,6 +27,7 @@ fetchUser("FishEyeData.json").then((data) => {
   console.log(media);
   btnScroll();
   addfilter();
+  filterReturn();
 });
 
 // Filters selection des photographes
