@@ -1,4 +1,6 @@
-import PhotographerCreateCard from "./PhotographerCard.js";
+//import PhotographerCreateCard from "./PhotographerCard.js";
+
+import { filterReturn } from "./photographer.js";
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *

@@ -1,3 +1,5 @@
+//export default filterReturn;
+export function filterReturn() {}
 /* *******************************
  *     RECUPERATION DE LA DATA   *
  ****************************** */
@@ -510,7 +512,7 @@ const menuFilter = () => {
   );
 };
 
-const filterReturn = () => {
+function filterReturn() {
   const filters = Array.from(
     document.querySelectorAll(".photographer__tag__filters")
   );
@@ -521,4 +523,4 @@ const filterReturn = () => {
       return filterSelected;
     })
   );
-};
+}
