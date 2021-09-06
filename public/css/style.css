@@ -107,14 +107,6 @@ h1 {
   display: flex;
   margin-left: 40px;
 }
-.filterpicture__select {
-  background-color: #901c1c;
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
-  padding: 0 0 1rem 1rem;
-  display: none;
-}
 .filterpicture__title {
   font-weight: 700;
   font-size: 1.5rem;
@@ -127,6 +119,14 @@ h1 {
   padding: 1.5rem 4rem 1.3rem 1.3rem;
   border-radius: 5px;
   margin-left: 2rem;
+}
+.filterpicture__select {
+  background-color: #901c1c;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0 0 1rem 1rem;
+  display: none;
 }
 .filterpicture__link {
   background-color: #901c1c;
@@ -211,6 +211,40 @@ h1 {
   transform: scale(1.4);
 }
 
+@media screen and (max-width: 800px) {
+  .filterpicture {
+    margin-left: 40px;
+  }
+  .filterpicture__title {
+    font-size: 1rem;
+    padding-top: 0.5rem;
+  }
+  .filterpicture__bloc {
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    margin-left: 1.5rem;
+  }
+  .filterpicture__select {
+    font-size: 1rem;
+    padding: 0 0.5rem 0.8rem 0.8rem;
+  }
+  .filterpicture__link {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem 0.8rem 0.8rem;
+    width: 120%;
+  }
+  .filterpicture__link:nth-last-child(1) {
+    padding-bottom: 0rem;
+  }
+  .filterpicture__icon {
+    font-size: 1rem;
+    right: 30px;
+  }
+
+  .invisible {
+    height: 45px;
+  }
+}
 @media screen and (max-width: 500px) {
   .cardphoto {
     width: 335px;

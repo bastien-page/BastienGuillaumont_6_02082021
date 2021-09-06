@@ -1,5 +1,3 @@
-//export function filterReturn();
-
 /* *******************************
  *     RECUPERATION DE LA DATA   *
  ****************************** */
@@ -477,9 +475,6 @@ const menuFilter = () => {
     input.style.display = "none";
   });
 
-  console.log(selected);
-  console.log(links);
-
   links.forEach((link) =>
     link.addEventListener("click", (e) => {
       menu.classList.add("invisible");
@@ -489,7 +484,6 @@ const menuFilter = () => {
 
       let texte = document.querySelector(".select").textContent;
       id = link.id;
-      console.log(texte);
       input.innerText = texte;
 
       console.log(id);

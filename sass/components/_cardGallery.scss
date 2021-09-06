@@ -1,14 +1,6 @@
 .filterpicture {
   display: flex;
   margin-left: 40px;
-  &__select {
-    background-color: $colorprimary;
-    color: white;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 0 0 1rem 1rem;
-    display: none;
-  }
   &__title {
     font-weight: 700;
     font-size: 1.5rem;
@@ -21,6 +13,14 @@
     padding: 1.5rem 4rem 1.3rem 1.3rem;
     border-radius: 5px;
     margin-left: 2rem;
+  }
+  &__select {
+    background-color: $colorprimary;
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0 0 1rem 1rem;
+    display: none;
   }
   &__link {
     background-color: $colorprimary;
@@ -105,6 +105,40 @@
 
 .click {
   transform: scale(1.4);
+}
+
+@media screen and (max-width: $breakpointpad) {
+  .filterpicture {
+    margin-left: 40px;
+    &__title {
+      font-size: 1rem;
+      padding-top: 0.5rem;
+    }
+    &__bloc {
+      padding: 0.8rem 2rem 0.8rem 1rem;
+      margin-left: 1.5rem;
+    }
+    &__select {
+      font-size: 1rem;
+      padding: 0 0.5rem 0.8rem 0.8rem;
+    }
+    &__link {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      padding: 0 0.5rem 0.8rem 0.8rem;
+      width: 120%;
+      &:nth-last-child(1) {
+        padding-bottom: 0rem;
+      }
+    }
+    &__icon {
+      font-size: 1rem;
+      right: 30px;
+    }
+  }
+  .invisible {
+    height: 45px;
+  }
 }
 
 @media screen and (max-width: $breakpointphone) {
