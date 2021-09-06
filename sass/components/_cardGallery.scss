@@ -1,6 +1,14 @@
 .filterpicture {
   display: flex;
   margin-left: 40px;
+  &__select {
+    background-color: $colorprimary;
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0 0 1rem 1rem;
+    display: none;
+  }
   &__title {
     font-weight: 700;
     font-size: 1.5rem;
@@ -48,6 +56,10 @@
 .invisible {
   height: 68px;
   overflow: hidden;
+}
+
+.display {
+  display: none;
 }
 
 .cardphoto {

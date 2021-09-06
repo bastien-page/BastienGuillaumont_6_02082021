@@ -1,4 +1,4 @@
-import Lightbox form 'Lightbox'
+//export function filterReturn();
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *
@@ -130,9 +130,8 @@ const createGallery = (media) => {
 
 // Creation de la modal de contact
 const createModalContact = (photographer) => {
-  const main = document.querySelector("main");
-  main.innerHTML += `
-  <div class="bground">
+  document.body.innerHTML += `
+  <div class="bground" aria-hidden="true" role="dialog">
   <div class="modal">
     <span class="modal__close"></span>
     <div class="modal__title">
@@ -143,25 +142,28 @@ const createModalContact = (photographer) => {
       <label class="modal__label" for="first">Prénom</label>
       <div class="first"></div>
       <br />
-      <input class="modal__input" type="text" id="first" name="first" />
+      <input aria-required="true" aria-invalid="false" class="modal__input" type="text" id="first" name="first" />
       <br />
       <label class="modal__label" for="last">Nom</label>
       <div class="last"></div>
       <br />
-      <input class="modal__input" type="text" id="last" name="last" />
+      <input aria-required="true" aria-invalid="false" class="modal__input" type="text" id="last" name="last" />
       <br />
       <label class="modal__label" for="email">E-mail</label>
       <div class="email"></div>
       <br />
-      <input class="modal__input" type="email" id="email" name="email" />
+      <input aria-required="true" aria-invalid="false" class="modal__input" type="email" id="email" name="email" />
       <br />
       <label class="modal__label" for="message">Votre message</label>
       <div class="message"></div>
       <br />
       <textarea
+        aria-required="true" 
+        aria-invalid="false"
         class="modal__input"
         name=""
         id="message"
+        min = "30"
         cols="25"
         rows="5"
       ></textarea>
@@ -196,17 +198,22 @@ const viewModal = () => {
   photographers.map((photographer) => createModalContact(photographer));
   const iconModal = document.querySelector(".modal__close");
   const btnContact = document.querySelector(".contact");
+  const main = document.querySelector("main");
 
   // Ouverture modal
   btnContact.addEventListener("click", () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "initial";
+    modal.setAttribute("aria-hidden", "false");
+    main.setAttribute("aria-hidden", "true");
   });
 
   //Fermeture modal
   iconModal.addEventListener("click", () => {
     const modal = document.querySelector(".bground");
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    main.setAttribute("aria-hidden", "false");
     document.querySelector(".modal__message").style.display = "none";
     form.reset();
   });
@@ -238,9 +245,11 @@ const viewModal = () => {
     if (!nameReg.test(first.value)) {
       error.textContent = "Veuillez entrer au moins deux caractères";
       first.classList.add("error-input");
+      first.setAttribute("aria-invalid", "true");
       return false;
     } else {
       first.classList.remove("error-input");
+      first.setAttribute("aria-invalid", "false");
       error.textContent = "";
       return true;
     }
@@ -251,9 +260,11 @@ const viewModal = () => {
     if (!nameReg.test(last.value)) {
       error.textContent = "Veuillez entrer au moins deux caractères";
       last.classList.add("error-input");
+      last.setAttribute("aria-invalid", "true");
       return false;
     } else {
       last.classList.remove("error-input");
+      last.setAttribute("aria-invalid", "false");
       error.textContent = "";
       return true;
     }
@@ -264,9 +275,11 @@ const viewModal = () => {
     if (!emailReg.test(email.value)) {
       error.textContent = "Veuillez entrer une adresse mail valide";
       email.classList.add("error-input");
+      email.setAttribute("aria-invalid", "true");
       return false;
     } else {
       email.classList.remove("error-input");
+      email.setAttribute("aria-invalid", "false");
       error.textContent = "";
       return true;
     }
@@ -277,9 +290,11 @@ const viewModal = () => {
     if (!messReg.test(message.value)) {
       error.textContent = "Votre message doit comporter au moins 30 caractères";
       message.classList.add("error-input");
+      message.setAttribute("aria-invalid", "true");
       return false;
     } else {
       message.classList.remove("error-input");
+      message.setAttribute("aria-invalid", "false");
       error.textContent = "";
       return true;
     }
@@ -450,22 +465,32 @@ const menuFilter = () => {
   const menu = document.querySelector(".filterpicture__bloc");
   const gallery = document.querySelector(".pictureGallery");
   let links = Array.from(document.querySelectorAll(".filterpicture__link"));
+  const input = document.querySelector(".filterpicture__select");
+  let selected = document.querySelector(".select");
 
   let id;
 
   iconBtn.addEventListener("click", () => {
     menu.classList.toggle("invisible");
     icon.classList.toggle("rotate");
+    selected.classList.remove("select");
+    input.style.display = "none";
   });
 
+  console.log(selected);
   console.log(links);
-  console.log(id);
 
   links.forEach((link) =>
     link.addEventListener("click", (e) => {
       menu.classList.add("invisible");
       icon.classList.remove("rotate");
+      link.classList.add("select");
+      input.style.display = "initial";
+
+      let texte = document.querySelector(".select").textContent;
       id = link.id;
+      console.log(texte);
+      input.innerText = texte;
 
       console.log(id);
       // tri par date

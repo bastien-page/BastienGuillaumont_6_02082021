@@ -107,6 +107,14 @@ h1 {
   display: flex;
   margin-left: 40px;
 }
+.filterpicture__select {
+  background-color: #901c1c;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0 0 1rem 1rem;
+  display: none;
+}
 .filterpicture__title {
   font-weight: 700;
   font-size: 1.5rem;
@@ -153,6 +161,10 @@ h1 {
 .invisible {
   height: 68px;
   overflow: hidden;
+}
+
+.display {
+  display: none;
 }
 
 .cardphoto {
