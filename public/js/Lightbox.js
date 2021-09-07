@@ -65,7 +65,7 @@ export default class Lightbox {
   }
 
   close(e) {
-    e.preventDefault;
+    e.preventDefault();
     this.element.classList.add("fadeOut");
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element);
@@ -94,9 +94,11 @@ export default class Lightbox {
   buildDOM(url) {
     const lightbox = document.createElement("div");
     lightbox.classList.add("lightbox");
-    lightbox.innerHTML = `<i class="lightbox__close fas fa-times"></i>
-      <i class="lightbox__prev fas fa-chevron-left"></i>
-      <i class="lightbox__next fas fa-chevron-right"></i>
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-hidden", "false");
+    lightbox.innerHTML = `<i class="lightbox__close fas fa-times" aria-label="Fermer" role="button"></i>
+      <i class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
+      <i class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
       <div class="lightbox__container">
       </div>
       `;
