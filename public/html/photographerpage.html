@@ -32,17 +32,19 @@
 
       <div class="filterpicture">
         <p class="filterpicture__title">Triez par</p>
-        <div class="filterpicture__bloc invisible">
+        <div role="navigation " class="filterpicture__bloc invisible">
           <p class="filterpicture__select"></p>
-          <p class="filterpicture__link" id="date">Date</p>
-          <p class="filterpicture__link" id="popular">Popularité</p>
-          <p class="filterpicture__link" id="title">Titre</p>
+          <p role="button" class="filterpicture__link" id="date">Date</p>
+          <p role="button" class="filterpicture__link" id="popular">
+            Popularité
+          </p>
+          <p role="button" class="filterpicture__link" id="title">Titre</p>
         </div>
         <div class="filterpicture__icon">
-          <i class="icon fas fa-chevron-down"></i>
+          <i role="button" class="icon fas fa-chevron-down"></i>
         </div>
       </div>
-      <div class="pictureGallery"></div>
+      <div aria-label="gallerie de media" class="pictureGallery"></div>
     </main>
 
     <footer></footer>

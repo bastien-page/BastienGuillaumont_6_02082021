@@ -16,29 +16,27 @@
   </head>
   <body>
     <header>
-      <a href="./index.html">
+      <a href="./index.html" aria-current="page">
         <img src="./img/logo.png" alt="Fisheye Home page" />
       </a>
 
-      <nav>
+      <nav role="nav" aria-label="navigation principale">
         <ul>
-          <li class="filter" id="portrait">#Portrait</li>
-          <li class="filter" id="art">#Art</li>
-          <li class="filter" id="fashion">#Fashion</li>
-          <li class="filter" id="architecture">#Architecture</li>
-          <li class="filter" id="travel">#Travel</li>
-          <li class="filter" id="sport">#Sport</li>
-          <li class="filter" id="animals">#Animals</li>
-          <li class="filter" id="events">#Events</li>
+          <li class="filter" role="button" id="portrait">#Portrait</li>
+          <li class="filter" role="button" id="art">#Art</li>
+          <li class="filter" role="button" id="fashion">#Fashion</li>
+          <li class="filter" role="button" id="architecture">#Architecture</li>
+          <li class="filter" role="button" id="travel">#Travel</li>
+          <li class="filter" role="button" id="sport">#Sport</li>
+          <li class="filter" role="button" id="animals">#Animals</li>
+          <li class="filter" role="button" id="events">#Events</li>
         </ul>
       </nav>
 
-      
-
-      <h1>Nos photographes</h1>
+      <h1 role="heading">Nos photographes</h1>
     </header>
 
-    <main class="main"></main>
+    <main class="main" aria-label="gallerie des photogrpahes"></main>
 
     <script src="../dist/app.js"></script>
   </body>

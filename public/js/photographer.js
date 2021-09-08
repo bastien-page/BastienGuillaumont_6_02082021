@@ -51,11 +51,13 @@ const createPhotographerInfo = (photographer) => {
   photographerInfo.innerHTML += `
       <div class="photographer__infos">
         <p class="photographer__name">${photographer.name}</p>
-        <p class="photographer__city">${photographer.city}, ${
-    photographer.country
-  }</p>
+        <p aria-label="ville" class="photographer__city">${
+          photographer.city
+        }, ${photographer.country}</p>
         <p class="photographer__slogan">${photographer.tagline}</p>
-        <div class="photographer__tag">${createTags(photographer.tags)}</div>
+        <div aria-label="centre d'interet" class="photographer__tag">${createTags(
+          photographer.tags
+        )}</div>
       </div>
 
 
@@ -95,9 +97,9 @@ const createGallery = (media) => {
                 
                 </a>
                 <figcaption class="cardphoto__info" >
-                  <p class="cardphoto__title">${media.title}</p>
-                  <p class="cardphoto__numberlike">${media.likes}</p>
-                  <i class="cardphoto__icon fas fa-heart"></i>
+                  <p aria-label="nom de la photo" class="cardphoto__title">${media.title}</p>
+                  <p aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
+                  <i role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
           `;
@@ -115,9 +117,9 @@ const createGallery = (media) => {
                 
                 </a>
                 <figcaption class="cardphoto__info" >
-                  <p class="cardphoto__title">${media.title}</p>
-                  <p class="cardphoto__numberlike">${media.likes}</p>
-                  <i class="cardphoto__icon fas fa-heart"></i>
+                  <p aria-label="nom de la video "class="cardphoto__title">${media.title}</p>
+                  <p aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
+                  <i role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
           `;

@@ -6,11 +6,14 @@ export default class PhotographerCreateCard {
   }
 
   buildCard(photographer) {
-    const card = document.createElement("div");
+    const card = document.createElement("article");
     card.classList.add("card");
+    card.setAttribute("aria-label", "information photographe");
     const link = document.createElement("a");
+    link.setAttribute("aria-label", photographer.name);
     const pictureProfil = document.createElement("img");
     pictureProfil.classList.add("card__photo");
+    pictureProfil.setAttribute("aria-label", "portrait du photographe");
     const name = document.createElement("p");
     name.classList.add("card__name");
     const city = document.createElement("p");
@@ -21,6 +24,7 @@ export default class PhotographerCreateCard {
     price.classList.add("card__price");
     const tags = document.createElement("div");
     tags.classList.add("card__tag");
+    tags.setAttribute("aria-label", "centre d'interet");
 
     this.selector.appendChild(card);
     card.appendChild(link);

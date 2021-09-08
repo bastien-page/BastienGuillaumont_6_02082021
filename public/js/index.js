@@ -1,5 +1,4 @@
 import PhotographerCreateCard from "./PhotographerCard";
-//import { filterReturn } from "./photographer";
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *
@@ -77,7 +76,7 @@ function addfilter() {
 // Création du Bouton scroll et ajout de l'écouteur
 const btnScroll = () => {
   document.body.innerHTML += `
-    <div class="btn_scroll">
+    <div role="button" class="btn_scroll">
       <a href="#main">Passer au contenu</a>
     </div>
     `;

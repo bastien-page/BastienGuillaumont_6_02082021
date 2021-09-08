@@ -97,8 +97,8 @@ export default class Lightbox {
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-hidden", "false");
     lightbox.innerHTML = `<i class="lightbox__close fas fa-times" aria-label="Fermer" role="button"></i>
-      <i class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
-      <i class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
+      <i  class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
+      <i  class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
       <div class="lightbox__container">
       </div>
       `;
