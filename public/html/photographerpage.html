@@ -28,26 +28,49 @@
     </header>
 
     <main>
-      <div class="infoPhotographer"></div>
+      <div aria-label="information photographe" class="infoPhotographer"></div>
 
       <div class="filterpicture">
         <p class="filterpicture__title">Triez par</p>
-        <div role="navigation " class="filterpicture__bloc invisible">
+        <div role="navigation" class="filterpicture__bloc invisible">
           <p class="filterpicture__select"></p>
-          <p role="button" class="filterpicture__link" id="date">Date</p>
-          <p role="button" class="filterpicture__link" id="popular">
+          <p
+            role="button"
+            aria-label="triez par date"
+            class="filterpicture__link"
+            id="date"
+          >
+            Date
+          </p>
+          <p
+            role="button"
+            aria-label="triez par Popularité"
+            class="filterpicture__link"
+            id="popular"
+          >
             Popularité
           </p>
-          <p role="button" class="filterpicture__link" id="title">Titre</p>
+          <p
+            role="button"
+            aria-label="triez par titre"
+            class="filterpicture__link"
+            id="title"
+          >
+            Titre
+          </p>
         </div>
         <div class="filterpicture__icon">
-          <i role="button" class="icon fas fa-chevron-down"></i>
+          <i
+            role="button"
+            aria-label="Ouvrir ou fermer le menu"
+            class="icon fas fa-chevron-down"
+          ></i>
         </div>
       </div>
       <div aria-label="gallerie de media" class="pictureGallery"></div>
     </main>
 
-    <footer></footer>
+    <footer role="contentinfo"></footer>
 
     <script src="../js/photographer.js"></script>
   </body>

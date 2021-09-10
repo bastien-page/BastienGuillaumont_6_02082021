@@ -80,6 +80,9 @@ h1 {
   background-color: #901c1c;
   color: white;
 }
+.card__tag-filter:focus {
+  border: 2px solid #d3573c;
+}
 
 .card:hover {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -285,12 +288,12 @@ header img {
   margin-left: 40px;
   width: 200px;
 }
-header nav ul {
+header nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-header nav ul .filter {
+header nav .filter {
   font-weight: 500;
   border: 1px solid #c4c4c4;
   border-radius: 25px;
@@ -299,9 +302,12 @@ header nav ul .filter {
   cursor: pointer;
   color: #901c1c;
 }
-header nav ul .filter:hover, header nav ul .filter-selected {
+header nav .filter:hover, header nav .filter-selected {
   background-color: #901c1c;
   color: white;
+}
+header nav .filter:focus {
+  border: 2px solid #d3573c;
 }
 header h1 {
   color: #901c1c;
@@ -650,6 +656,9 @@ body {
   background-color: #901c1c;
   color: white;
 }
+.photographer__tag__filters:focus {
+  border: 2px solid #d3573c;
+}
 .photographer__btn {
   margin-right: 100px;
 }
@@ -727,6 +736,9 @@ body {
     width: 150px;
     height: 150px;
   }
+}
+:focus {
+  border: 2px solid #d3573c;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,3 +1,5 @@
+//export { filterSelected };
+
 /* *******************************
  *     RECUPERATION DE LA DATA   *
  ****************************** */
@@ -50,7 +52,9 @@ const createPhotographerInfo = (photographer) => {
   const photographerInfo = document.querySelector(".infoPhotographer");
   photographerInfo.innerHTML += `
       <div class="photographer__infos">
-        <p class="photographer__name">${photographer.name}</p>
+        <p aria-label="nom du photographe" class="photographer__name">${
+          photographer.name
+        }</p>
         <p aria-label="ville" class="photographer__city">${
           photographer.city
         }, ${photographer.country}</p>
@@ -67,7 +71,9 @@ const createPhotographerInfo = (photographer) => {
 
       
       <div class="photographer__pp">
-        <img src="../img/IDPhotos/${photographer.portrait}" alt="" />
+        <img src="../img/IDPhotos/${photographer.portrait}" alt="portrait de ${
+    photographer.portrait
+  } " />
         </div>`;
 };
 
@@ -98,8 +104,8 @@ const createGallery = (media) => {
                 </a>
                 <figcaption class="cardphoto__info" >
                   <p aria-label="nom de la photo" class="cardphoto__title">${media.title}</p>
-                  <p aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
-                  <i role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
+                  <p tabindex="0" aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
+                  <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
           `;
@@ -114,12 +120,11 @@ const createGallery = (media) => {
                   controls
                   alt="${media.title}"
                 />
-                
                 </a>
                 <figcaption class="cardphoto__info" >
                   <p aria-label="nom de la video "class="cardphoto__title">${media.title}</p>
-                  <p aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
-                  <i role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
+                  <p tabindex="0" aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
+                  <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
           `;
@@ -184,11 +189,11 @@ const createFooter = (photographer) => {
   const footer = document.querySelector("footer");
   footer.innerHTML += `
   <div class="like">
-  <p class="like__compter"></p>
+  <p aria-label="Nombre total de likes" class="like__compter"></p>
   <i class="like__icon fas fa-heart"></i>
   </div>
   <div>
-  <p class="price">${photographer.price}€/jour</p>
+  <p aria-label="prix" class="price">${photographer.price}€/jour</p>
   </div>`;
 };
 
@@ -242,7 +247,10 @@ const viewModal = () => {
   // Verification du prémon
   function isFirstValid() {
     let error = document.querySelector(".first");
+
+    console.log(first);
     if (!nameReg.test(first.value)) {
+      console.log(first.value);
       error.textContent = "Veuillez entrer au moins deux caractères";
       first.classList.add("error-input");
       first.setAttribute("aria-invalid", "true");
@@ -330,6 +338,27 @@ const addLike = () => {
       }
     })
   );
+  iconsLike.forEach((icon) => {
+    icon.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        icon.classList.toggle("click");
+        if (icon.classList.contains("click")) {
+          icon.previousElementSibling.innerText++;
+          totalLike.innerText++;
+        } else {
+          icon.previousElementSibling.innerText--;
+          totalLike.innerText--;
+        }
+      }
+    });
+  });
+  if (icon.classList.contains("click")) {
+    icon.previousElementSibling.innerText++;
+    totalLike.innerText++;
+  } else {
+    icon.previousElementSibling.innerText--;
+    totalLike.innerText--;
+  }
 };
 
 //On compte le nombre de likes
@@ -355,6 +384,7 @@ class Lightbox {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
+        document.querySelector("main").setAttribute("aria-hidden", "true");
       })
     );
   }
@@ -409,12 +439,13 @@ class Lightbox {
   }
 
   close(e) {
-    e.preventDefault;
+    e.preventDefault();
     this.element.classList.add("fadeOut");
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element);
     }, 500);
     document.removeEventListener("keyup", this.onKeyUp);
+    document.querySelector("main").setAttribute("aria-hidden", "false");
   }
 
   next(e) {
@@ -441,11 +472,11 @@ class Lightbox {
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-hidden", "false");
     lightbox.innerHTML = `<i class="lightbox__close fas fa-times" aria-label="Fermer" role="button"></i>
-    <i class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
-    <i class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
-    <div class="lightbox__container">
-    </div>
-    `;
+      <i  class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
+      <i  class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
+      <div class="lightbox__container">
+      </div>
+      `;
 
     lightbox
       .querySelector(".lightbox__close")
@@ -474,6 +505,7 @@ const menuFilter = () => {
 
   iconBtn.addEventListener("click", () => {
     menu.classList.toggle("invisible");
+    menu.setAttribute("aria-expanded", "true");
     icon.classList.toggle("rotate");
     selected.classList.remove("select");
     input.style.display = "none";
@@ -482,6 +514,7 @@ const menuFilter = () => {
   links.forEach((link) =>
     link.addEventListener("click", (e) => {
       menu.classList.add("invisible");
+      menu.setAttribute("aria-expanded", "false");
       icon.classList.remove("rotate");
       link.classList.add("select");
       input.style.display = "initial";
@@ -533,13 +566,15 @@ const menuFilter = () => {
   );
 };
 
+let filterSelected = null;
+
 function filterReturn() {
   const filters = Array.from(
     document.querySelectorAll(".photographer__tag__filters")
   );
   filters.forEach((filter) =>
     filter.addEventListener("click", (e) => {
-      var filterSelected = e.target.textContent.slice(1);
+      filterSelected = e.target.textContent.slice(1);
       console.log(filterSelected);
       return filterSelected;
     })

@@ -56,7 +56,7 @@ export default class PhotographerCreateCard {
   createTag(tags) {
     let addTag = "";
     tags.forEach((tag) => {
-      addTag += `<div class="card__tag-filter">#${tag}</div>`;
+      addTag += `<div role="button" class="card__tag-filter">#${tag}</div>`;
     });
     return addTag;
   }

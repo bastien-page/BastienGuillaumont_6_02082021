@@ -11,4 +11,7 @@
     background-color: $colorprimary;
     color: white;
   }
+  &:focus {
+    border: 2px solid $colorsecondary;
+  }
 }

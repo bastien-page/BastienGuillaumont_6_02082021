@@ -9,13 +9,11 @@ header {
     width: 200px;
   }
   nav {
-    ul {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      .filter {
-        @include filter;
-      }
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .filter {
+      @include filter;
     }
   }
   h1 {

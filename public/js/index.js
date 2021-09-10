@@ -1,4 +1,5 @@
 import PhotographerCreateCard from "./PhotographerCard";
+import { filterSelected } from "./photographer";
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *
@@ -27,6 +28,9 @@ fetchUser("FishEyeData.json").then((data) => {
   console.log(media);
   btnScroll();
   addfilter();
+  if (!filterSelected == null) {
+    activeFilters = filterSelected;
+  }
   //filterReturn();
 });
 
