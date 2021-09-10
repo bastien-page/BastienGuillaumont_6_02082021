@@ -25,6 +25,6 @@
 @import "../sass/pages/index";
 @import "../sass/pages/photographer";
 
-:focus {
+* :focus {
   border: 2px solid $colorsecondary;
 }

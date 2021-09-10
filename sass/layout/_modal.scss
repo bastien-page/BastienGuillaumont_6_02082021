@@ -42,31 +42,18 @@
     border-radius: 5px;
     margin: 10px 0;
     padding: 5px 10px;
+    &:focus {
+      border: 2px solid $colorprimary;
+    }
   }
   &__close {
     position: absolute;
-    right: 15px;
+    right: 20px;
     top: 20px;
     width: 50px;
-    height: 50px;
-    opacity: 1;
+    height: 60px;
     cursor: pointer;
-
-    &:before,
-    &:after {
-      position: absolute;
-      left: 20px;
-      content: " ";
-      height: 50px;
-      width: 5px;
-      background-color: #fff;
-    }
-    &:before {
-      transform: rotate(45deg);
-    }
-    &:after {
-      transform: rotate(-45deg);
-    }
+    background-color: $colortertiary;
   }
 }
 .first,
@@ -82,6 +69,11 @@
 .error-input {
   border: 3px solid red;
   animation: inputError 0.5s;
+}
+
+.close {
+  font-size: 4rem;
+  color: $colorprimary;
 }
 
 @keyframes inputError {

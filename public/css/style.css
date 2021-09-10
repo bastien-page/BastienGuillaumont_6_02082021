@@ -456,28 +456,17 @@ footer {
   margin: 10px 0;
   padding: 5px 10px;
 }
+.modal__input:focus {
+  border: 2px solid #901c1c;
+}
 .modal__close {
   position: absolute;
-  right: 15px;
+  right: 20px;
   top: 20px;
   width: 50px;
-  height: 50px;
-  opacity: 1;
+  height: 60px;
   cursor: pointer;
-}
-.modal__close:before, .modal__close:after {
-  position: absolute;
-  left: 20px;
-  content: " ";
-  height: 50px;
-  width: 5px;
-  background-color: #fff;
-}
-.modal__close:before {
-  transform: rotate(45deg);
-}
-.modal__close:after {
-  transform: rotate(-45deg);
+  background-color: #db8876;
 }
 
 .first,
@@ -493,6 +482,11 @@ footer {
 .error-input {
   border: 3px solid red;
   animation: inputError 0.5s;
+}
+
+.close {
+  font-size: 4rem;
+  color: #901c1c;
 }
 
 @keyframes inputError {
@@ -543,10 +537,11 @@ footer {
   color: #901c1c;
 }
 .lightbox__prev, .lightbox__close, .lightbox__next {
+  width: auto;
   font-size: 4rem;
   color: #901c1c;
   position: fixed;
-  cursor: pointer;
+  background-color: white;
 }
 .lightbox__close {
   top: 10px;
@@ -737,7 +732,7 @@ body {
     height: 150px;
   }
 }
-:focus {
+* :focus {
   border: 2px solid #d3573c;
 }
 

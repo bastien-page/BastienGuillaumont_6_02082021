@@ -138,7 +138,7 @@ const createModalContact = (photographer) => {
   document.body.innerHTML += `
   <div class="bground" aria-hidden="true" role="dialog" aria-labelby="modaltitle">
   <div class="modal">
-    <span class="modal__close"></span>
+    <button class="modal__close"><i class="close fas fa-times"></i></button>
     <div id="modaltitle" class="modal__title">
       Contactez-moi <br />
       ${photographer.name}
@@ -189,11 +189,11 @@ const createFooter = (photographer) => {
   const footer = document.querySelector("footer");
   footer.innerHTML += `
   <div class="like">
-  <p aria-label="Nombre total de likes" class="like__compter"></p>
+  <p tabindex="0" aria-label="Nombre total de likes" class="like__compter"></p>
   <i class="like__icon fas fa-heart"></i>
   </div>
   <div>
-  <p aria-label="prix" class="price">${photographer.price}€/jour</p>
+  <p tabindex="0" aria-label="prix" class="price">${photographer.price}€/jour</p>
   </div>`;
 };
 
@@ -211,6 +211,7 @@ const viewModal = () => {
     modal.style.display = "initial";
     modal.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "true");
+    iconModal.focus();
   });
 
   //Fermeture modal
@@ -352,13 +353,6 @@ const addLike = () => {
       }
     });
   });
-  if (icon.classList.contains("click")) {
-    icon.previousElementSibling.innerText++;
-    totalLike.innerText++;
-  } else {
-    icon.previousElementSibling.innerText--;
-    totalLike.innerText--;
-  }
 };
 
 //On compte le nombre de likes
@@ -397,6 +391,7 @@ class Lightbox {
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
     document.addEventListener("keyup", this.onKeyUp);
+    document.querySelector(".lightbox__close").focus();
   }
 
   loadImage(url) {
@@ -471,9 +466,9 @@ class Lightbox {
     lightbox.classList.add("lightbox");
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-hidden", "false");
-    lightbox.innerHTML = `<i class="lightbox__close fas fa-times" aria-label="Fermer" role="button"></i>
-      <i  class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
-      <i  class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
+    lightbox.innerHTML = `<button class="lightbox__close" aria-label="Fermer"><i  class=" fas fa-times" ></i></button>
+      <button tabindex="0" aria-label="Précédent" class="lightbox__prev"><i class="fas fa-chevron-left" ></i></button>
+      <button tabindex="0" aria-label="Suivant" class="lightbox__next"><i class="fas fa-chevron-right" ></i></button>
       <div class="lightbox__container">
       </div>
       `;

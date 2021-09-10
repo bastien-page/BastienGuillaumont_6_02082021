@@ -30,10 +30,11 @@
   &__prev,
   &__close,
   &__next {
+    width: auto;
     font-size: 4rem;
     color: $colorprimary;
     position: fixed;
-    cursor: pointer;
+    background-color: white;
   }
   &__close {
     top: 10px;
