@@ -229,6 +229,10 @@ const viewModal = () => {
     main.setAttribute("aria-hidden", "false");
     document.querySelector(".modal__message").style.display = "none";
     form.reset();
+    resetError(first, errorFirst);
+    resetError(last, errorLast);
+    resetError(email, errorMail);
+    resetError(message, errorMessage);
   });
 
   // Traitement du formulaire
@@ -243,6 +247,16 @@ const viewModal = () => {
   const last = document.getElementById("last"); // DOM Formulaire Nom
   const email = document.getElementById("email"); // Formulaire E-mail
   const message = document.getElementById("message"); // Formulaire E-mail
+  const errorFirst = document.querySelector(".first");
+  const errorLast = document.querySelector(".last");
+  const errorMail = document.querySelector(".email");
+  const errorMessage = document.querySelector(".message");
+
+  function resetError(selector, selectorError) {
+    selector.classList.remove("error-input");
+    selector.setAttribute("aria-invalid", "false");
+    selectorError.textContent = "";
+  }
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -254,12 +268,9 @@ const viewModal = () => {
 
   // Verification du prémon
   function isFirstValid() {
-    let error = document.querySelector(".first");
-
-    console.log(first);
     if (!nameReg.test(first.value)) {
       console.log(first.value);
-      error.textContent = "Veuillez entrer au moins deux caractères";
+      errorFirst.textContent = "Veuillez entrer au moins deux caractères";
       first.classList.add("error-input");
       first.setAttribute("aria-invalid", "true");
       first.setAttribute("role", "alert");
@@ -267,19 +278,17 @@ const viewModal = () => {
         "aria-label",
         "Veuillez entrer au moins deux caractères"
       );
+      first.focus();
       return false;
     } else {
-      first.classList.remove("error-input");
-      first.setAttribute("aria-invalid", "false");
-      error.textContent = "";
+      resetError(first, errorFirst);
       return true;
     }
   }
   // Verification du nom
   function isLastValid() {
-    let error = document.querySelector(".last");
     if (!nameReg.test(last.value)) {
-      error.textContent = "Veuillez entrer au moins deux caractères";
+      errorLast.textContent = "Veuillez entrer au moins deux caractères";
       last.classList.add("error-input");
       last.setAttribute("aria-invalid", "true");
       last.setAttribute("role", "alert");
@@ -287,19 +296,17 @@ const viewModal = () => {
         "aria-label",
         "Veuillez entrer au moins deux caractères"
       );
+      last.focus();
       return false;
     } else {
-      last.classList.remove("error-input");
-      last.setAttribute("aria-invalid", "false");
-      error.textContent = "";
+      resetError(last, errorLast);
       return true;
     }
   }
   // Verification de l'email
   function isEmailValid() {
-    let error = document.querySelector(".email");
     if (!emailReg.test(email.value)) {
-      error.textContent = "Veuillez entrer une adresse mail valide";
+      errorMail.textContent = "Veuillez entrer une adresse mail valide";
       email.classList.add("error-input");
       email.setAttribute("aria-invalid", "true");
       email.setAttribute("role", "alert");
@@ -307,34 +314,28 @@ const viewModal = () => {
         "aria-label",
         "Veuillez entrer une adresse mail valide"
       );
+      email.focus();
       return false;
     } else {
-      email.classList.remove("error-input");
-      email.setAttribute("aria-invalid", "false");
-      error.textContent = "";
+      resetError(email, errorMail);
       return true;
     }
   }
   // Verification du message
   function isMessageValid() {
-    let error = document.querySelector(".message");
     if (!messReg.test(message.value)) {
-      error.textContent = "Votre message doit comporter au moins 30 caractères";
+      errorMessage.textContent =
+        "Votre message doit comporter au moins 30 caractères";
       message.classList.add("error-input");
       message.setAttribute("aria-invalid", "true");
+      message.focus();
       return false;
     } else {
-      message.classList.remove("error-input");
-      message.setAttribute("aria-invalid", "false");
-      message.setAttribute("role", "alert");
-      message.setAttribute(
-        "aria-label",
-        "Votre message doit comporter au moins 30 caractères"
-      );
-      error.textContent = "";
+      resetError(message, errorMessage);
       return true;
     }
   }
+
   // Verification du formulaire
   function isFormValid() {
     if (
@@ -594,6 +595,8 @@ const menuFilter = () => {
   );
 };
 
+// Permet de filter les photos suivant le tag selectionné
+
 function filterReturn() {
   const gallery = document.querySelector(".pictureGallery");
   const filters = Array.from(
@@ -606,12 +609,10 @@ function filterReturn() {
       if (filterSelected === null) {
         filter.classList.add("tagselect");
         filterSelected = e.target.textContent.slice(1);
-        console.log(filterSelected);
         medias = medias.filter((media) => {
           return media.tags == filterSelected;
         });
         gallery.innerHTML = "";
-        console.log(medias);
         medias.map((media) => createGallery(media));
       } else if (filterSelected === e.target.textContent.slice(1)) {
         filter.classList.remove("tagselect");
@@ -620,7 +621,6 @@ function filterReturn() {
         medias = mediasReset;
         gallery.innerHTML = "";
         medias.map((media) => createGallery(media));
-        console.log(medias);
       } else if (filterSelected != e.target.textContent.slice(1)) {
         filters.forEach((filter) => filter.classList.remove("tagselect"));
         filter.classList.add("tagselect");
@@ -631,7 +631,6 @@ function filterReturn() {
           return media.tags == filterSelected;
         });
         medias.map((media) => createGallery(media));
-        console.log(medias);
       }
     })
   );

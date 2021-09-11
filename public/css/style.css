@@ -658,6 +658,9 @@ body {
 .photographer__tag__filters:focus {
   border: 2px solid #d3573c;
 }
+.photographer__tag__filters:focus {
+  border-radius: 25px;
+}
 .photographer__btn {
   margin-right: 100px;
 }

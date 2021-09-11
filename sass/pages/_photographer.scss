@@ -29,6 +29,9 @@
     &__filters {
       @include filter;
       margin-top: 1rem;
+      &:focus {
+        border-radius: 25px;
+      }
     }
   }
   &__btn {
