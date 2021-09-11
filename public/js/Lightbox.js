@@ -11,6 +11,7 @@ export default class Lightbox {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
+        document.querySelector("main").setAttribute("aria-hidden", "true");
       })
     );
   }
@@ -23,6 +24,7 @@ export default class Lightbox {
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
     document.addEventListener("keyup", this.onKeyUp);
+    document.querySelector(".lightbox__close").focus();
   }
 
   loadImage(url) {
@@ -71,6 +73,7 @@ export default class Lightbox {
       this.element.parentElement.removeChild(this.element);
     }, 500);
     document.removeEventListener("keyup", this.onKeyUp);
+    document.querySelector("main").setAttribute("aria-hidden", "false");
   }
 
   next(e) {
@@ -96,9 +99,9 @@ export default class Lightbox {
     lightbox.classList.add("lightbox");
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-hidden", "false");
-    lightbox.innerHTML = `<i class="lightbox__close fas fa-times" aria-label="Fermer" role="button"></i>
-      <i  class="lightbox__prev fas fa-chevron-left" aria-label="Précédent" role="button"></i>
-      <i  class="lightbox__next fas fa-chevron-right" aria-label="Suivant" role="button"></i>
+    lightbox.innerHTML = `<button class="lightbox__close" aria-label="Fermer"><i  class=" fas fa-times" ></i></button>
+      <button tabindex="0" aria-label="Précédent" class="lightbox__prev"><i class="fas fa-chevron-left" ></i></button>
+      <button tabindex="0" aria-label="Suivant" class="lightbox__next"><i class="fas fa-chevron-right" ></i></button>
       <div class="lightbox__container">
       </div>
       `;

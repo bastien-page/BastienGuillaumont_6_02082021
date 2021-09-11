@@ -1,5 +1,4 @@
 import PhotographerCreateCard from "./PhotographerCard";
-import { filterSelected } from "./photographer";
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *
@@ -11,27 +10,18 @@ const fetchUser = async (url) => {
   const data = await response.json();
   return data;
 };
-
 // On traite la Data
 let photographers;
 let photographersReset;
-let media;
 fetchUser("./public/FishEyeData.json").then((data) => {
   photographers = data.photographers;
   photographersReset = data.photographers;
-  media = data.media;
   photographers.map(
     (photographer) =>
       new PhotographerCreateCard(document.querySelector("main"), photographer)
   );
-  console.log(photographers);
-  console.log(media);
   btnScroll();
   addfilter();
-  if (!filterSelected == null) {
-    activeFilters = filterSelected;
-  }
-  //filterReturn();
 });
 
 // Filters selection des photographes

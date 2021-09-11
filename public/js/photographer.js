@@ -1,4 +1,4 @@
-//export { filterSelected };
+//import Lightbox from "./Lightbox";
 
 /* *******************************
  *     RECUPERATION DE LA DATA   *
@@ -31,15 +31,12 @@ async function createPage() {
   medias = medias.filter((element) => {
     return element.photographerId == recupHash();
   });
-  mediasReset = medias.filter((element) => {
-    return element.photographerId == recupHash();
-  });
-  console.log(medias);
+  mediasReset = medias;
   medias.map((media) => createGallery(media));
   viewModal();
   totalLikes();
   addLike();
-  Lightbox.init();
+  //Lightbox.init();
   menuFilter();
   filterReturn();
 }
@@ -394,128 +391,6 @@ const totalLikes = () => {
     .querySelector(".like__compter")
     .setAttribute("aria-label", "Nombre total de like " + total);
 };
-
-// Creation de la Lightbox
-class Lightbox {
-  static init() {
-    const links = Array.from(
-      document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
-    );
-    const images = links.map((link) => link.getAttribute("href"));
-    const titles = links.map(
-      (link) => link.firstElementChild.attributes.alt.value
-    );
-    links.forEach((link) =>
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
-        document.querySelector("main").setAttribute("aria-hidden", "true");
-      })
-    );
-  }
-
-  constructor(url, images, titles) {
-    this.element = this.buildDOM(url);
-    this.images = images;
-    this.titles = titles;
-    this.loadImage(url);
-    this.onKeyUp = this.onKeyUp.bind(this);
-    document.body.appendChild(this.element);
-    document.addEventListener("keyup", this.onKeyUp);
-    document.querySelector(".lightbox__close").focus();
-  }
-
-  loadImage(url) {
-    // Avoir pour optimiser
-    const links = Array.from(
-      document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
-    );
-    const images = links.map((link) => link.getAttribute("href"));
-    ////
-    this.url = null;
-    const image = document.createElement("img");
-    const video = document.createElement("video");
-    video.setAttribute("type", "video/mp4");
-    video.setAttribute("controls", "controls");
-    const container = this.element.querySelector(".lightbox__container");
-    const imageTitle = document.createElement("p");
-    imageTitle.classList.add("lightbox__title");
-    imageTitle.textContent = "";
-    container.innerHTML = "";
-    this.url = url;
-    imageTitle.textContent = this.titles[images.indexOf(url)];
-    if (url.includes(".mp4")) {
-      container.appendChild(video);
-      video.src = url;
-    } else {
-      container.appendChild(image);
-      image.src = url;
-    }
-    container.appendChild(imageTitle);
-  }
-
-  onKeyUp(e) {
-    if (e.key === "Escape") {
-      this.close(e);
-    } else if (e.key === "ArrowRight") {
-      this.next(e);
-    } else if (e.key === "ArrowLeft") {
-      this.prev(e);
-    }
-  }
-
-  close(e) {
-    e.preventDefault();
-    this.element.classList.add("fadeOut");
-    window.setTimeout(() => {
-      this.element.parentElement.removeChild(this.element);
-    }, 500);
-    document.removeEventListener("keyup", this.onKeyUp);
-    document.querySelector("main").setAttribute("aria-hidden", "false");
-  }
-
-  next(e) {
-    e.preventDefault();
-    let i = this.images.findIndex((i) => i === this.url);
-    if (i === this.images.length - 1) {
-      i = -1;
-    }
-    this.loadImage(this.images[i + 1]);
-  }
-
-  prev(e) {
-    e.preventDefault();
-    let i = this.images.findIndex((i) => i === this.url);
-    if (i === 0) {
-      i = this.images.length;
-    }
-    this.loadImage(this.images[i - 1]);
-  }
-
-  buildDOM(url) {
-    const lightbox = document.createElement("div");
-    lightbox.classList.add("lightbox");
-    lightbox.setAttribute("role", "dialog");
-    lightbox.setAttribute("aria-hidden", "false");
-    lightbox.innerHTML = `<button class="lightbox__close" aria-label="Fermer"><i  class=" fas fa-times" ></i></button>
-      <button tabindex="0" aria-label="Précédent" class="lightbox__prev"><i class="fas fa-chevron-left" ></i></button>
-      <button tabindex="0" aria-label="Suivant" class="lightbox__next"><i class="fas fa-chevron-right" ></i></button>
-      <div class="lightbox__container">
-      </div>
-      `;
-
-    lightbox
-      .querySelector(".lightbox__close")
-      .addEventListener("click", this.close.bind(this));
-    lightbox
-      .querySelector(".lightbox__next")
-      .addEventListener("click", this.next.bind(this));
-    lightbox
-      .querySelector(".lightbox__prev")
-      .addEventListener("click", this.prev.bind(this));
-    return lightbox;
-  }
-}
 
 // Fonction pour le tri de la gallerie
 const menuFilter = () => {
