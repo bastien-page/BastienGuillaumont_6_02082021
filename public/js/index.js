@@ -16,7 +16,7 @@ const fetchUser = async (url) => {
 let photographers;
 let photographersReset;
 let media;
-fetchUser("FishEyeData.json").then((data) => {
+fetchUser("./public/FishEyeData.json").then((data) => {
   photographers = data.photographers;
   photographersReset = data.photographers;
   media = data.media;

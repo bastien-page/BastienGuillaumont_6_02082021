@@ -37,7 +37,7 @@ export default class PhotographerCreateCard {
 
     link.setAttribute(
       "href",
-      "./html/photographerpage.html#" + photographer.id
+      "public/html/photographerpage.html#" + photographer.id
     );
     pictureProfil.setAttribute(
       "src",
