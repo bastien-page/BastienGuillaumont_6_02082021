@@ -113,6 +113,30 @@
 }
 
 @media screen and (max-width: $breakpointpad) {
+  .filterpicture {
+    &__title {
+      font-weight: 700;
+      font-size: 1rem;
+      padding-top: 0.5rem;
+    }
+    &__bloc {
+      margin-left: 1rem;
+    }
+
+    &__link,
+    &__select {
+      width: 140px;
+      height: 52px;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    &__icon i {
+      font-size: 1rem;
+    }
+  }
+  .invisible {
+    height: 50px;
+  }
 }
 @media screen and (max-width: $breakpointphone) {
   .cardphoto {

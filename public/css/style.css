@@ -220,6 +220,29 @@ h1 {
   transform: scale(1.4);
 }
 
+@media screen and (max-width: 800px) {
+  .filterpicture__title {
+    font-weight: 700;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+  }
+  .filterpicture__bloc {
+    margin-left: 1rem;
+  }
+  .filterpicture__link, .filterpicture__select {
+    width: 140px;
+    height: 52px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .filterpicture__icon i {
+    font-size: 1rem;
+  }
+
+  .invisible {
+    height: 50px;
+  }
+}
 @media screen and (max-width: 500px) {
   .cardphoto {
     width: 335px;
