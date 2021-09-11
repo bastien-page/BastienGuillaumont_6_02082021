@@ -18,6 +18,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/style.css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="../img/icon.png" />
     <title>Photographe</title>
   </head>
   <body>
@@ -28,45 +30,28 @@
     </header>
 
     <main>
-      <div aria-label="information photographe" class="infoPhotographer"></div>
+      <div class="infoPhotographer"></div>
 
       <div class="filterpicture">
-        <p class="filterpicture__title">Triez par</p>
-        <div role="navigation" class="filterpicture__bloc invisible">
-          <p class="filterpicture__select"></p>
-          <p
-            role="button"
-            aria-label="triez par date"
-            class="filterpicture__link"
-            id="date"
-          >
-            Date
-          </p>
-          <p
-            role="button"
-            aria-label="triez par Popularité"
-            class="filterpicture__link"
-            id="popular"
-          >
-            Popularité
-          </p>
-          <p
-            role="button"
-            aria-label="triez par titre"
-            class="filterpicture__link"
-            id="title"
-          >
-            Titre
-          </p>
-        </div>
-        <div class="filterpicture__icon">
-          <i
-            role="button"
-            aria-label="Ouvrir ou fermer le menu"
-            class="icon fas fa-chevron-down"
-          ></i>
+        <div class="filterpicture__title">Triez par</div>
+        <div class="filterpicture__bloc invisible">
+          <p class="filterpicture__select select"></p>
+          <div class="filterpicture__list">
+            <button id="date" class="filterpicture__link">Date</button>
+            <button id="popular" class="filterpicture__link">Popularité</button>
+            <button id="title" class="filterpicture__link">Titre</button>
+          </div>
+          <div class="filterpicture__icon">
+            <i
+              tabindex="0"
+              role="button"
+              aria-label="Ouvrir ou fermer le menu"
+              class="icon fas fa-chevron-down"
+            ></i>
+          </div>
         </div>
       </div>
+
       <div aria-label="gallerie de media" class="pictureGallery"></div>
     </main>
 

@@ -9,43 +9,43 @@
   &__bloc {
     display: flex;
     flex-direction: column;
+    position: relative;
     background-color: $colorprimary;
-    padding: 1.5rem 4rem 1.3rem 1.3rem;
     border-radius: 5px;
     margin-left: 2rem;
   }
-  &__select {
-    background-color: $colorprimary;
-    color: white;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 0 0 1rem 1rem;
-    display: none;
+  &__list {
+    display: flex;
+    flex-direction: column;
   }
-  &__link {
+  &__link,
+  &__select {
+    width: 180px;
+    height: 62px;
+    padding: 1rem;
     background-color: $colorprimary;
     color: white;
     font-weight: 700;
     font-size: 1.5rem;
     cursor: pointer;
     text-align: left;
-    margin-bottom: 1rem;
-    padding: 0 0 1rem 1rem;
     border-bottom: 1px solid white;
-    width: 140%;
+    margin: 0 0.5rem;
     &:nth-last-child(1) {
       border: none;
-      margin-bottom: 0;
-      padding-bottom: 0.3rem;
     }
   }
   &__icon {
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    padding-top: 1rem;
-    position: relative;
-    right: 40px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    i {
+      color: white;
+      font-size: 2rem;
+    }
+  }
+  &__select {
+    display: none;
   }
 }
 
@@ -54,7 +54,7 @@
 }
 
 .invisible {
-  height: 68px;
+  height: 60px;
   overflow: hidden;
 }
 
@@ -67,6 +67,7 @@
   height: 350px;
   margin: 0 auto;
   color: $colorprimary;
+
   &__info {
     position: relative;
   }
@@ -82,6 +83,10 @@
     width: 350px;
     height: 300px;
     border-radius: 5px;
+    &:focus {
+      border: 3px solid $colorsecondary;
+      padding: 0.3rem;
+    }
   }
 
   &__numberlike {
@@ -108,39 +113,7 @@
 }
 
 @media screen and (max-width: $breakpointpad) {
-  .filterpicture {
-    margin-left: 40px;
-    &__title {
-      font-size: 1rem;
-      padding-top: 0.5rem;
-    }
-    &__bloc {
-      padding: 0.8rem 2rem 0.8rem 1rem;
-      margin-left: 1.5rem;
-    }
-    &__select {
-      font-size: 1rem;
-      padding: 0 0.5rem 0.8rem 0.8rem;
-    }
-    &__link {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      padding: 0 0.5rem 0.8rem 0.8rem;
-      width: 120%;
-      &:nth-last-child(1) {
-        padding-bottom: 0rem;
-      }
-    }
-    &__icon {
-      font-size: 1rem;
-      right: 30px;
-    }
-  }
-  .invisible {
-    height: 45px;
-  }
 }
-
 @media screen and (max-width: $breakpointphone) {
   .cardphoto {
     width: 335px;

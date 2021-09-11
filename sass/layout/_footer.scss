@@ -19,6 +19,9 @@ footer {
   &__compter {
     font-size: 1.8rem;
     margin-right: 10px;
+    &:focus {
+      border: 2px solid white;
+    }
   }
   &__icon {
     font-size: 1.5rem;
@@ -27,6 +30,9 @@ footer {
 .price {
   font-size: 1.8rem;
   margin-right: 20px;
+  &:focus {
+    border: 2px solid white;
+  }
 }
 
 @media screen and (max-width: $breakpointpad) {

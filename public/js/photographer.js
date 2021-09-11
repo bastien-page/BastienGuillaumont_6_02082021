@@ -52,13 +52,17 @@ const createPhotographerInfo = (photographer) => {
   const photographerInfo = document.querySelector(".infoPhotographer");
   photographerInfo.innerHTML += `
       <div class="photographer__infos">
-        <p aria-label="nom du photographe" class="photographer__name">${
+        <p tabindex="0" aria-label="${
           photographer.name
-        }</p>
-        <p aria-label="ville" class="photographer__city">${
-          photographer.city
-        }, ${photographer.country}</p>
-        <p class="photographer__slogan">${photographer.tagline}</p>
+        }" class="photographer__name">${photographer.name}</p>
+        <p tabindex="0" aria-label="${photographer.city}, ${
+    photographer.country
+  }" class="photographer__city">${photographer.city}, ${
+    photographer.country
+  }</p>
+        <p tabindex="0" aria-label="${
+          photographer.tagline
+        }"class="photographer__slogan">${photographer.tagline}</p>
         <div aria-label="centre d'interet" class="photographer__tag">${createTags(
           photographer.tags
         )}</div>
@@ -93,18 +97,18 @@ const createGallery = (media) => {
   const gallery = document.querySelector(".pictureGallery");
   if (media.video == undefined) {
     gallery.innerHTML += `
-          <figure class="cardphoto">
-          <a href="../img/gallerie/${media.image}">
+          <figure  class="cardphoto">
+          <a  tabindex="-1" href="../img/gallerie/${media.image}">
                 <img
+                tabindex="0"
                   class="cardphoto__picture"
                   src="../img/gallerie/${media.image} "
                   alt="${media.title}"
                 />
-                
                 </a>
                 <figcaption class="cardphoto__info" >
                   <p aria-label="nom de la photo" class="cardphoto__title">${media.title}</p>
-                  <p tabindex="0" aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
+                  <p tabindex="0" aria-label="nombre de like ${media.likes}" class="cardphoto__numberlike">${media.likes}</p>
                   <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
@@ -112,7 +116,7 @@ const createGallery = (media) => {
   } else {
     gallery.innerHTML += `
           <figure class="cardphoto">
-          <a href="../img/gallerie/${media.video}">
+          <a tabindex="-1" href="../img/gallerie/${media.video}">
                 <video
                   class="cardphoto__picture"
                   type="video/mp4"
@@ -123,7 +127,7 @@ const createGallery = (media) => {
                 </a>
                 <figcaption class="cardphoto__info" >
                   <p aria-label="nom de la video "class="cardphoto__title">${media.title}</p>
-                  <p tabindex="0" aria-label="nombre de likes" class="cardphoto__numberlike">${media.likes}</p>
+                  <p tabindex="0" aria-label="nombre de like ${media.likes}" class="cardphoto__numberlike">${media.likes}</p>
                   <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
@@ -138,7 +142,7 @@ const createModalContact = (photographer) => {
   document.body.innerHTML += `
   <div class="bground" aria-hidden="true" role="dialog" aria-labelby="modaltitle">
   <div class="modal">
-    <button class="modal__close"><i class="close fas fa-times"></i></button>
+    <button class="modal__close" aria-label="Fermer la modale"><i class="close fas fa-times"></i></button>
     <div id="modaltitle" class="modal__title">
       Contactez-moi <br />
       ${photographer.name}
@@ -189,11 +193,11 @@ const createFooter = (photographer) => {
   const footer = document.querySelector("footer");
   footer.innerHTML += `
   <div class="like">
-  <p tabindex="0" aria-label="Nombre total de likes" class="like__compter"></p>
+  <p tabindex="0" aria-label="Nombre total de like" class="like__compter"></p>
   <i class="like__icon fas fa-heart"></i>
   </div>
   <div>
-  <p tabindex="0" aria-label="prix" class="price">${photographer.price}€/jour</p>
+  <p tabindex="0" aria-label="prix ${photographer.price} €/jour" class="price">${photographer.price}€/jour</p>
   </div>`;
 };
 
@@ -255,6 +259,11 @@ const viewModal = () => {
       error.textContent = "Veuillez entrer au moins deux caractères";
       first.classList.add("error-input");
       first.setAttribute("aria-invalid", "true");
+      first.setAttribute("role", "alert");
+      first.setAttribute(
+        "aria-label",
+        "Veuillez entrer au moins deux caractères"
+      );
       return false;
     } else {
       first.classList.remove("error-input");
@@ -270,6 +279,11 @@ const viewModal = () => {
       error.textContent = "Veuillez entrer au moins deux caractères";
       last.classList.add("error-input");
       last.setAttribute("aria-invalid", "true");
+      last.setAttribute("role", "alert");
+      last.setAttribute(
+        "aria-label",
+        "Veuillez entrer au moins deux caractères"
+      );
       return false;
     } else {
       last.classList.remove("error-input");
@@ -285,6 +299,11 @@ const viewModal = () => {
       error.textContent = "Veuillez entrer une adresse mail valide";
       email.classList.add("error-input");
       email.setAttribute("aria-invalid", "true");
+      email.setAttribute("role", "alert");
+      email.setAttribute(
+        "aria-label",
+        "Veuillez entrer une adresse mail valide"
+      );
       return false;
     } else {
       email.classList.remove("error-input");
@@ -304,6 +323,11 @@ const viewModal = () => {
     } else {
       message.classList.remove("error-input");
       message.setAttribute("aria-invalid", "false");
+      message.setAttribute("role", "alert");
+      message.setAttribute(
+        "aria-label",
+        "Votre message doit comporter au moins 30 caractères"
+      );
       error.textContent = "";
       return true;
     }
@@ -355,13 +379,16 @@ const addLike = () => {
   });
 };
 
-//On compte le nombre de likes
+//On compte le nombre total de likes
 const totalLikes = () => {
   let total = 0;
   for (i = 0; i < totalLike.length; i++) {
     total += totalLike[i];
   }
   document.querySelector(".like__compter").innerText = total;
+  document
+    .querySelector(".like__compter")
+    .setAttribute("aria-label", "Nombre total de like " + total);
 };
 
 // Creation de la Lightbox

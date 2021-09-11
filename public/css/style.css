@@ -105,6 +105,9 @@ h1 {
   font-size: 1rem;
   padding: 10px 20px;
 }
+.btn-submit:focus {
+  transform: scale(1.2);
+}
 
 .filterpicture {
   display: flex;
@@ -118,43 +121,42 @@ h1 {
 .filterpicture__bloc {
   display: flex;
   flex-direction: column;
+  position: relative;
   background-color: #901c1c;
-  padding: 1.5rem 4rem 1.3rem 1.3rem;
   border-radius: 5px;
   margin-left: 2rem;
 }
-.filterpicture__select {
-  background-color: #901c1c;
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
-  padding: 0 0 1rem 1rem;
-  display: none;
+.filterpicture__list {
+  display: flex;
+  flex-direction: column;
 }
-.filterpicture__link {
+.filterpicture__link, .filterpicture__select {
+  width: 180px;
+  height: 62px;
+  padding: 1rem;
   background-color: #901c1c;
   color: white;
   font-weight: 700;
   font-size: 1.5rem;
   cursor: pointer;
   text-align: left;
-  margin-bottom: 1rem;
-  padding: 0 0 1rem 1rem;
   border-bottom: 1px solid white;
-  width: 140%;
+  margin: 0 0.5rem;
 }
-.filterpicture__link:nth-last-child(1) {
+.filterpicture__link:nth-last-child(1), .filterpicture__select:nth-last-child(1) {
   border: none;
-  margin-bottom: 0;
-  padding-bottom: 0.3rem;
 }
 .filterpicture__icon {
-  font-size: 2rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.filterpicture__icon i {
   color: white;
-  cursor: pointer;
-  padding-top: 1rem;
-  position: relative;
-  right: 40px;
+  font-size: 2rem;
+}
+.filterpicture__select {
+  display: none;
 }
 
 .rotate {
@@ -162,7 +164,7 @@ h1 {
 }
 
 .invisible {
-  height: 68px;
+  height: 60px;
   overflow: hidden;
 }
 
@@ -192,6 +194,10 @@ h1 {
   height: 300px;
   border-radius: 5px;
 }
+.cardphoto__picture:focus {
+  border: 3px solid #d3573c;
+  padding: 0.3rem;
+}
 .cardphoto__numberlike {
   position: absolute;
   right: 35px;
@@ -214,40 +220,6 @@ h1 {
   transform: scale(1.4);
 }
 
-@media screen and (max-width: 800px) {
-  .filterpicture {
-    margin-left: 40px;
-  }
-  .filterpicture__title {
-    font-size: 1rem;
-    padding-top: 0.5rem;
-  }
-  .filterpicture__bloc {
-    padding: 0.8rem 2rem 0.8rem 1rem;
-    margin-left: 1.5rem;
-  }
-  .filterpicture__select {
-    font-size: 1rem;
-    padding: 0 0.5rem 0.8rem 0.8rem;
-  }
-  .filterpicture__link {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    padding: 0 0.5rem 0.8rem 0.8rem;
-    width: 120%;
-  }
-  .filterpicture__link:nth-last-child(1) {
-    padding-bottom: 0rem;
-  }
-  .filterpicture__icon {
-    font-size: 1rem;
-    right: 30px;
-  }
-
-  .invisible {
-    height: 45px;
-  }
-}
 @media screen and (max-width: 500px) {
   .cardphoto {
     width: 335px;
@@ -381,6 +353,9 @@ footer {
   font-size: 1.8rem;
   margin-right: 10px;
 }
+.like__compter:focus {
+  border: 2px solid white;
+}
 .like__icon {
   font-size: 1.5rem;
 }
@@ -388,6 +363,9 @@ footer {
 .price {
   font-size: 1.8rem;
   margin-right: 20px;
+}
+.price:focus {
+  border: 2px solid white;
 }
 
 @media screen and (max-width: 800px) {
@@ -463,10 +441,13 @@ footer {
   position: absolute;
   right: 20px;
   top: 20px;
-  width: 50px;
-  height: 60px;
+  width: 60px;
+  height: 80px;
   cursor: pointer;
   background-color: #db8876;
+}
+.modal__close:focus {
+  border: 2px solid #901c1c;
 }
 
 .first,
@@ -734,6 +715,7 @@ body {
 }
 * :focus {
   border: 2px solid #d3573c;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -14,4 +14,7 @@
   font-weight: 700;
   font-size: 1rem;
   padding: 10px 20px;
+  &:focus {
+    transform: scale(1.2);
+  }
 }
