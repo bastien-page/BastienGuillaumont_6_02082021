@@ -31,6 +31,9 @@ async function createPage() {
   medias = medias.filter((element) => {
     return element.photographerId == recupHash();
   });
+  mediasReset = medias.filter((element) => {
+    return element.photographerId == recupHash();
+  });
   console.log(medias);
   medias.map((media) => createGallery(media));
   viewModal();
@@ -85,7 +88,7 @@ const createPhotographerInfo = (photographer) => {
 const createTags = (tags) => {
   let addTag = "";
   tags.forEach((tag) => {
-    addTag += `<a href="../index.html" class="photographer__tag__filters">#${tag}</a>`;
+    addTag += `<a href="#" class="photographer__tag__filters">#${tag}</a>`;
   });
   return addTag;
 };
@@ -555,6 +558,7 @@ const menuFilter = () => {
         addLike();
         Lightbox.init();
         menuFilter();
+        filterReturn();
       }
       // tri par likes
       else if (id == "popular") {
@@ -569,6 +573,7 @@ const menuFilter = () => {
         addLike();
         Lightbox.init();
         menuFilter();
+        filterReturn();
       }
       // tri par titre
       else if (id == "title") {
@@ -583,22 +588,51 @@ const menuFilter = () => {
         addLike();
         Lightbox.init();
         menuFilter();
+        filterReturn();
       }
     })
   );
 };
 
-let filterSelected = null;
-
 function filterReturn() {
+  const gallery = document.querySelector(".pictureGallery");
   const filters = Array.from(
     document.querySelectorAll(".photographer__tag__filters")
   );
+  let filterSelected = null;
   filters.forEach((filter) =>
     filter.addEventListener("click", (e) => {
-      filterSelected = e.target.textContent.slice(1);
-      console.log(filterSelected);
-      return filterSelected;
+      e.preventDefault;
+      if (filterSelected === null) {
+        filter.classList.add("tagselect");
+        filterSelected = e.target.textContent.slice(1);
+        console.log(filterSelected);
+        medias = medias.filter((media) => {
+          return media.tags == filterSelected;
+        });
+        gallery.innerHTML = "";
+        console.log(medias);
+        medias.map((media) => createGallery(media));
+      } else if (filterSelected === e.target.textContent.slice(1)) {
+        filter.classList.remove("tagselect");
+        filterSelected === null;
+        console.log(filterSelected);
+        medias = mediasReset;
+        gallery.innerHTML = "";
+        medias.map((media) => createGallery(media));
+        console.log(medias);
+      } else if (filterSelected != e.target.textContent.slice(1)) {
+        filters.forEach((filter) => filter.classList.remove("tagselect"));
+        filter.classList.add("tagselect");
+        filterSelected = e.target.textContent.slice(1);
+        medias = mediasReset;
+        gallery.innerHTML = "";
+        medias = medias.filter((media) => {
+          return media.tags == filterSelected;
+        });
+        medias.map((media) => createGallery(media));
+        console.log(medias);
+      }
     })
   );
 }
