@@ -39,9 +39,10 @@ export default class PhotographerCreateCard {
       "href",
       "public/html/photographerpage.html#" + photographer.id
     );
+
     pictureProfil.setAttribute(
       "src",
-      "../public/img/IDPhotos/" + photographer.portrait
+      "./public/img/IDPhotos/" + photographer.portrait
     );
     name.innerText = photographer.name;
     city.innerText = photographer.city + ", " + photographer.country;
