@@ -421,19 +421,19 @@ const menuFilter = () => {
 
   iconBtn.addEventListener("click", () => {
     menu.classList.toggle("invisible");
+    menu.setAttribute("aria-expanded", "true");
     icon.classList.toggle("rotate");
     selected.classList.remove("select");
     input.style.display = "none";
   });
 
   links.forEach((link) =>
-    link.addEventListener("click", (e) => {
+    link.addEventListener("click", () => {
       menu.classList.add("invisible");
       menu.setAttribute("aria-expanded", "false");
       icon.classList.remove("rotate");
       link.classList.add("select");
       input.style.display = "initial";
-
       let texte = document.querySelector(".select").textContent;
       id = link.id;
       input.innerText = texte;
