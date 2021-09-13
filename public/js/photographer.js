@@ -1,17 +1,18 @@
-//import Lightbox from "./Lightbox";
+// Import de la Class
+import Lightbox from "./Lightbox";
 
-/* *******************************
- *     RECUPERATION DE LA DATA   *
- ****************************** */
+// Déclaration des variables
+let photographers;
+let medias;
+let mediasReset;
+let totalLike = [];
 
+// Récupération de la data
 async function fetchUser() {
   const response = await fetch("../FishEyeData.json");
   const data = await response.json();
   return data;
 }
-
-let photographers;
-let medias;
 
 // On traite la Data
 fetchUser().then((data) => {
@@ -23,6 +24,7 @@ window.addEventListener("DOMContentLoaded", createPage());
 async function createPage() {
   await fetchUser();
   recupHash();
+
   photographers = photographers.filter((element) => {
     return element.id == recupHash();
   });
@@ -34,16 +36,15 @@ async function createPage() {
   mediasReset = medias;
   medias.map((media) => createGallery(media));
   viewModal();
-  totalLikes();
   addLike();
-  //Lightbox.init();
+  Lightbox.init();
   menuFilter();
   filterReturn();
 }
 
 // On recupere le Hash
 const recupHash = () => {
-  hash = window.location.hash.substr(1);
+  let hash = window.location.hash.substr(1);
   return hash;
 };
 
@@ -90,8 +91,6 @@ const createTags = (tags) => {
   return addTag;
 };
 
-let totalLike = [];
-
 // Creation de la  gallerie d'image
 const createGallery = (media) => {
   const gallery = document.querySelector(".pictureGallery");
@@ -135,6 +134,7 @@ const createGallery = (media) => {
   }
 
   totalLike.push(media.likes);
+  totalLikes();
 };
 
 // Creation de la modal de contact
@@ -182,7 +182,7 @@ const createModalContact = (photographer) => {
         class="button"
         value="Envoyer"
       />
-      <p class="modal__message">Votre message a été envoyé</p>
+      <p class="modal__message" aria-label="Votre message a été envoyé">Votre message a été envoyé</p>
     </form>
   </div>
 </div>
@@ -230,6 +230,21 @@ const viewModal = () => {
     resetError(last, errorLast);
     resetError(email, errorMail);
     resetError(message, errorMessage);
+  });
+
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      const modal = document.querySelector(".bground");
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+      main.setAttribute("aria-hidden", "false");
+      document.querySelector(".modal__message").style.display = "none";
+      form.reset();
+      resetError(first, errorFirst);
+      resetError(last, errorLast);
+      resetError(email, errorMail);
+      resetError(message, errorMessage);
+    }
   });
 
   // Traitement du formulaire
@@ -383,7 +398,7 @@ const addLike = () => {
 //On compte le nombre total de likes
 const totalLikes = () => {
   let total = 0;
-  for (i = 0; i < totalLike.length; i++) {
+  for (let i = 0; i < totalLike.length; i++) {
     total += totalLike[i];
   }
   document.querySelector(".like__compter").innerText = total;
@@ -395,7 +410,7 @@ const totalLikes = () => {
 // Fonction pour le tri de la gallerie
 const menuFilter = () => {
   const iconBtn = document.querySelector(".filterpicture__icon");
-  const icon = document.querySelector(".fas");
+  const icon = document.querySelector(".fa-chevron-down");
   const menu = document.querySelector(".filterpicture__bloc");
   const gallery = document.querySelector(".pictureGallery");
   let links = Array.from(document.querySelectorAll(".filterpicture__link"));
@@ -406,7 +421,6 @@ const menuFilter = () => {
 
   iconBtn.addEventListener("click", () => {
     menu.classList.toggle("invisible");
-    menu.setAttribute("aria-expanded", "true");
     icon.classList.toggle("rotate");
     selected.classList.remove("select");
     input.style.display = "none";

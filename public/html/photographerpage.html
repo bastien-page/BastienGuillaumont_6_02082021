@@ -34,7 +34,11 @@
 
       <div class="filterpicture">
         <div class="filterpicture__title">Triez par</div>
-        <div class="filterpicture__bloc invisible">
+        <div
+          class="filterpicture__bloc invisible"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           <p class="filterpicture__select select"></p>
           <div class="filterpicture__list">
             <button id="date" class="filterpicture__link">Date</button>
@@ -57,7 +61,6 @@
 
     <footer role="contentinfo"></footer>
 
-    <!-- <script src="../../dist/photographer.js"></script> -->
-    <script src="../js/photographer.js"></script>
+    <script src="../../dist/photographer.js"></script>
   </body>
 </html>
