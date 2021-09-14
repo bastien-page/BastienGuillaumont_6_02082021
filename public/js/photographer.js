@@ -64,7 +64,7 @@ const createPhotographerInfo = (photographer) => {
         <p tabindex="0" aria-label="${
           photographer.tagline
         }"class="photographer__slogan">${photographer.tagline}</p>
-        <div aria-label="centre d'interet" class="photographer__tag">${createTags(
+        <div aria-label="Filtrez les photos par themes" class="photographer__tag">${createTags(
           photographer.tags
         )}</div>
       </div>
@@ -182,7 +182,7 @@ const createModalContact = (photographer) => {
         class="button"
         value="Envoyer"
       />
-      <p class="modal__message" aria-label="Votre message a été envoyé">Votre message a été envoyé</p>
+      <p class="modal__message" role="alert" aria-label="Votre message a été envoyé">Votre message a été envoyé</p>
     </form>
   </div>
 </div>
@@ -274,6 +274,7 @@ const viewModal = () => {
     e.preventDefault();
     if (isFormValid() === true) {
       document.querySelector(".modal__message").style.display = "initial";
+      document.querySelector(".modal__message").focus();
       form.reset();
     }
   });
@@ -425,6 +426,16 @@ const menuFilter = () => {
     icon.classList.toggle("rotate");
     selected.classList.remove("select");
     input.style.display = "none";
+  });
+
+  iconBtn.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      menu.classList.toggle("invisible");
+      menu.setAttribute("aria-expanded", "true");
+      icon.classList.toggle("rotate");
+      selected.classList.remove("select");
+      input.style.display = "none";
+    }
   });
 
   links.forEach((link) =>

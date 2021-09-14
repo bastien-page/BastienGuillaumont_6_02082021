@@ -151,7 +151,7 @@ h1 {
   top: 15px;
   right: 15px;
 }
-.filterpicture__icon i {
+.filterpicture__icon em {
   color: white;
   font-size: 2rem;
 }
@@ -235,7 +235,7 @@ h1 {
     padding: 1rem;
     font-size: 1rem;
   }
-  .filterpicture__icon i {
+  .filterpicture__icon em {
     font-size: 1rem;
   }
 
