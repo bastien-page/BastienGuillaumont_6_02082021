@@ -14,6 +14,15 @@ export default class Lightbox {
         document.querySelector("main").setAttribute("aria-hidden", "true");
       })
     );
+    links.forEach((link) =>
+      link.addEventListener("keyup", (e) => {
+        e.preventDefault();
+        if (e.key === "Enter") {
+          new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
+          document.querySelector("main").setAttribute("aria-hidden", "true");
+        }
+      })
+    );
   }
 
   constructor(url, images, titles) {
