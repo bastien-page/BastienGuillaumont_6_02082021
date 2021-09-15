@@ -134,6 +134,7 @@ const createGallery = (media) => {
   }
 
   totalLike.push(media.likes);
+  console.log(totalLike);
   totalLikes();
 };
 
@@ -399,6 +400,7 @@ const addLike = () => {
 //On compte le nombre total de likes
 const totalLikes = () => {
   let total = 0;
+
   for (let i = 0; i < totalLike.length; i++) {
     total += totalLike[i];
   }
@@ -448,6 +450,7 @@ const menuFilter = () => {
       let texte = document.querySelector(".select").textContent;
       id = link.id;
       input.innerText = texte;
+      totalLike = [];
       // tri par date
       if (id == "date") {
         medias.sort(function (a, b) {
