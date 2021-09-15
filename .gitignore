@@ -4,4 +4,7 @@
 *.scss.map
 
 package.json
+package-lock.json
 node_modules/
+vscode/
+.eslintrc.js

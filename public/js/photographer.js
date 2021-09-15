@@ -134,7 +134,7 @@ const createGallery = (media) => {
   }
 
   totalLike.push(media.likes);
-  console.log(totalLike);
+
   totalLikes();
 };
 
