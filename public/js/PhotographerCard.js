@@ -21,19 +21,16 @@ export default class PhotographerCreateCard {
     city.setAttribute("tabindex", "0");
     city.setAttribute(
       "aria-label",
-      "Localisation " + photographer.city + ", " + photographer.country
+      `Localisation ${photographer.city}, ${photographer.country}`
     );
     const slogan = document.createElement("p");
     slogan.classList.add("card__slogan");
     slogan.setAttribute("tabindex", "0");
-    slogan.setAttribute("aria-label", "Slogan " + photographer.tagline);
+    slogan.setAttribute("aria-label", `Slogan ${photographer.tagline}`);
     const price = document.createElement("p");
     price.classList.add("card__price");
     price.setAttribute("tabindex", "0");
-    price.setAttribute(
-      "aria-label",
-      "Prix" + photographer.price + "euros par jour"
-    );
+    price.setAttribute("aria-label", `Prix${photographer.price}euros par jour`);
     const tags = document.createElement("div");
     tags.classList.add("card__tag");
     this.selector.appendChild(card);
@@ -47,17 +44,17 @@ export default class PhotographerCreateCard {
 
     link.setAttribute(
       "href",
-      "public/html/photographerpage.html#" + photographer.id
+      `public/html/photographerpage.html#${photographer.id}`
     );
 
     pictureProfil.setAttribute(
       "src",
-      "./public/img/IDPhotos/" + photographer.portrait
+      `./public/img/IDPhotos/${photographer.portrait}`
     );
     name.innerText = photographer.name;
-    city.innerText = photographer.city + ", " + photographer.country;
+    city.innerText = `${photographer.city}, ${photographer.country}`;
     slogan.innerText = photographer.tagline;
-    price.innerText = photographer.price + "€/jour";
+    price.innerText = `${photographer.price}€/jour`;
 
     tags.innerHTML = this.createTag(photographer.tags);
 

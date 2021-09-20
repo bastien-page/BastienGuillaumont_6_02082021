@@ -27,15 +27,15 @@ fetchUser("./public/FishEyeData.json").then((data) => {
 // Filters selection des photographes
 function addfilter() {
   let activeFilters = null;
-  let main = document.querySelector("main");
+  const main = document.querySelector("main");
   const filters = Array.from(document.querySelectorAll(".filter"));
   filters.forEach((filter) => {
     filter.addEventListener("click", (e) => {
       if (activeFilters === null) {
         activeFilters = e.target.id;
-        photographers = photographers.filter((element) => {
-          return element.tags.includes(activeFilters);
-        });
+        photographers = photographers.filter((element) =>
+          element.tags.includes(activeFilters)
+        );
         main.innerHTML = "";
         console.log(photographers);
         photographers.map(
@@ -55,9 +55,9 @@ function addfilter() {
         filter.classList.add("filter-selected");
         photographers = photographersReset;
         activeFilters = e.target.id;
-        photographers = photographers.filter((element) => {
-          return element.tags.includes(activeFilters);
-        });
+        photographers = photographers.filter((element) =>
+          element.tags.includes(activeFilters)
+        );
         main.innerHTML = "";
         photographers.map(
           (photographer) => new PhotographerCreateCard(main, photographer)
@@ -74,7 +74,7 @@ const btnScroll = () => {
       <a href="#main">Passer au contenu</a>
     </div>
     `;
-  let btn = document.querySelector(".btn_scroll");
+  const btn = document.querySelector(".btn_scroll");
   document.addEventListener("scroll", (e) => {
     if (window.scrollY > 5) {
       btn.style.top = "10px";
