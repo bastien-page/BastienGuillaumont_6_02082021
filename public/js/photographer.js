@@ -53,18 +53,13 @@ const createPhotographerInfo = (photographer) => {
   const photographerInfo = document.querySelector(".infoPhotographer");
   photographerInfo.innerHTML += `
       <div class="photographer__infos">
-        <p tabindex="0" aria-label="${
-          photographer.name
-        }" class="photographer__name">${photographer.name}</p>
-        <p tabindex="0" aria-label="${photographer.city}, ${
-    photographer.country
-  }" class="photographer__city">${photographer.city}, ${
-    photographer.country
-  }</p>
-        <p tabindex="0" aria-label="${
-          photographer.tagline
-        }"class="photographer__slogan">${photographer.tagline}</p>
-        <div aria-label="Filtrez les photos par themes" class="photographer__tag">${createTags(
+        <p tabindex="0" aria-label="nom du photographe"
+        class="photographer__name">${photographer.name}</p>
+        <p tabindex="0" aria-label=" Localisation"
+ class="photographer__city">${photographer.city}, ${photographer.country}</p>
+        <p tabindex="0" aria-label="slogan"
+        class="photographer__slogan">${photographer.tagline}</p>
+        <div aria-label="Filtrez les photos par thème" class="photographer__tag">${createTags(
           photographer.tags
         )}</div>
       </div>
@@ -106,8 +101,8 @@ const createGallery = (media) => {
                 />
                 </a>
                 <figcaption class="cardphoto__info" >
-                  <p aria-label="nom de la photo" class="cardphoto__title">${media.title}</p>
-                  <p tabindex="0" aria-label="nombre de like ${media.likes}" class="cardphoto__numberlike">${media.likes}</p>
+                  <p  class="cardphoto__title">${media.title}</p>
+                  <p tabindex="0" aria-label="nombre de like " class="cardphoto__numberlike">${media.likes}</p>
                   <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>
@@ -125,8 +120,8 @@ const createGallery = (media) => {
                 />
                 </a>
                 <figcaption class="cardphoto__info" >
-                  <p aria-label="nom de la video "class="cardphoto__title">${media.title}</p>
-                  <p tabindex="0" aria-label="nombre de like ${media.likes}" class="cardphoto__numberlike">${media.likes}</p>
+                  <p class="cardphoto__title">${media.title}</p>
+                  <p tabindex="0" aria-label="nombre de like" class="cardphoto__numberlike">${media.likes}</p>
                   <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
                 </figcaption>
               </figure>

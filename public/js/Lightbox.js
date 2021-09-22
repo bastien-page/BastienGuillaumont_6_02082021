@@ -12,6 +12,8 @@ export default class Lightbox {
         e.preventDefault();
         new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
         document.querySelector("main").setAttribute("aria-hidden", "true");
+        document.querySelector("header").setAttribute("aria-hidden", "true");
+        document.querySelector("footer").setAttribute("aria-hidden", "true");
       })
     );
     links.forEach((link) =>
@@ -20,6 +22,8 @@ export default class Lightbox {
         if (e.key === "Enter") {
           new Lightbox(e.currentTarget.getAttribute("href"), images, titles);
           document.querySelector("main").setAttribute("aria-hidden", "true");
+          document.querySelector("header").setAttribute("aria-hidden", "true");
+          document.querySelector("footer").setAttribute("aria-hidden", "true");
         }
       })
     );
