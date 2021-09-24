@@ -71,12 +71,31 @@
 
 .error-input {
   border: 3px solid red;
-  animation: inputError 0.5s;
+  -webkit-animation: inputError 0.5s;
+          animation: inputError 0.5s;
 }
 
 .close {
   font-size: 4rem;
   color: $colorprimary;
+}
+
+@-webkit-keyframes inputError {
+  0% {
+    transform: translateX(-5px);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }
 
 @keyframes inputError {

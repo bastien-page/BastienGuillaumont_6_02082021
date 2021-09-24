@@ -79,7 +79,8 @@
     width: 80%;
   }
   &__picture {
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     width: 350px;
     height: 300px;
     border-radius: 5px;

@@ -10,6 +10,7 @@ const fetchUser = async (url) => {
   const data = await response.json();
   return data;
 };
+
 // On traite la Data
 let photographers;
 let photographersReset;
