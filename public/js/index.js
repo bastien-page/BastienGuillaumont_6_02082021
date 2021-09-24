@@ -76,7 +76,7 @@ const btnScroll = () => {
     </div>
     `;
   const btn = document.querySelector(".btn_scroll");
-  document.addEventListener("scroll", (e) => {
+  document.addEventListener("scroll", () => {
     if (window.scrollY > 5) {
       btn.style.top = "10px";
     } else {

@@ -178,7 +178,7 @@ const createModalContact = (photographer) => {
         class="button"
         value="Envoyer"
       />
-      <p class="modal__message" role="alert" aria-label="Votre message a été envoyé">Votre message a été envoyé</p>
+      <button class="modal__message" role="alert" aria-label="Votre message a été envoyé">Votre message a été envoyé</button>
     </form>
   </div>
 </div>
