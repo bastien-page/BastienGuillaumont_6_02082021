@@ -72,7 +72,7 @@
 .error-input {
   border: 3px solid red;
   -webkit-animation: inputError 0.5s;
-          animation: inputError 0.5s;
+  animation: inputError 0.5s;
 }
 
 .close {
@@ -113,5 +113,24 @@
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+@media screen and (max-width: $breakpointpad) {
+  .modal {
+    &__title {
+      font-size: 3rem;
+    }
+    &__message,
+    &__input,
+    &__label {
+      font-size: 1.5rem;
+    }
+    &__message {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
   }
 }
