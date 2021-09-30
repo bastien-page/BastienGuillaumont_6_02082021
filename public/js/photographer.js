@@ -255,6 +255,12 @@ const viewModal = () => {
   const errorMail = document.querySelector(".email");
   const errorMessage = document.querySelector(".message");
 
+  function resetError(selector, selectorError) {
+    selector.classList.remove("error-input");
+    selector.setAttribute("aria-invalid", "false");
+    selectorError.textContent = "";
+  }
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (isFormValid() === true) {
