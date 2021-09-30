@@ -19,15 +19,21 @@ export default class PhotographerCreateCard {
     const city = document.createElement("p");
     city.classList.add("card__location");
     city.setAttribute("tabindex", "0");
-    city.setAttribute("aria-label", `Localisation`);
+    city.setAttribute(
+      "aria-label",
+      `Localisation ` + photographer.city + " " + photographer.country
+    );
     const slogan = document.createElement("p");
     slogan.classList.add("card__slogan");
     slogan.setAttribute("tabindex", "0");
-    slogan.setAttribute("aria-label", `Slogan`);
+    slogan.setAttribute("aria-label", `Slogan ` + photographer.tagline);
     const price = document.createElement("p");
     price.classList.add("card__price");
     price.setAttribute("tabindex", "0");
-    price.setAttribute("aria-label", `Prix`);
+    price.setAttribute(
+      "aria-label",
+      `Prix ` + photographer.price + `euro par jour`
+    );
     const tags = document.createElement("div");
     tags.classList.add("card__tag");
     tags.setAttribute("aria-label", `Centre d'interet`);

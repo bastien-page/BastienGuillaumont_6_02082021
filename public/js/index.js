@@ -38,7 +38,6 @@ function addfilter() {
           element.tags.includes(activeFilters)
         );
         main.innerHTML = "";
-        console.log(photographers);
         photographers.map(
           (photographer) => new PhotographerCreateCard(main, photographer)
         );

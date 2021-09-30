@@ -41,12 +41,11 @@ export default class Lightbox {
   }
 
   loadImage(url) {
-    // Avoir pour optimiser
     const links = Array.from(
       document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
     );
     const images = links.map((link) => link.getAttribute("href"));
-    ////
+
     this.url = null;
     const image = document.createElement("img");
     const video = document.createElement("video");
@@ -107,7 +106,7 @@ export default class Lightbox {
     this.loadImage(this.images[i - 1]);
   }
 
-  buildDOM(url) {
+  buildDOM() {
     const lightbox = document.createElement("div");
     lightbox.classList.add("lightbox");
     lightbox.setAttribute("role", "dialog");
