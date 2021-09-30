@@ -20,11 +20,17 @@ fetchUser().then((data) => {
   medias = data.media;
 });
 
+// On recupere le Hash
+const recupHash = () => {
+  let hash = window.location.hash.substr(1);
+  return hash;
+};
+
+// Event pour l'affichage de la page
 window.addEventListener("DOMContentLoaded", createPage());
 async function createPage() {
   await fetchUser();
   recupHash();
-
   photographers = photographers.filter((element) => {
     return element.id == recupHash();
   });
@@ -42,12 +48,6 @@ async function createPage() {
   filterReturn();
 }
 
-// On recupere le Hash
-const recupHash = () => {
-  let hash = window.location.hash.substr(1);
-  return hash;
-};
-
 /// Creation de la partie info du photographe
 const createPhotographerInfo = (photographer) => {
   const photographerInfo = document.querySelector(".infoPhotographer");
@@ -63,13 +63,9 @@ const createPhotographerInfo = (photographer) => {
           photographer.tags
         )}</div>
       </div>
-
-
       <div class="photographer__btn">
         <button class="btn contact">Contactez-moi</button>
-      </div>
-
-      
+      </div>   
       <div class="photographer__pp">
         <img src="../img/IDPhotos/${photographer.portrait}" alt="portrait de ${
     photographer.portrait
@@ -117,20 +113,31 @@ const createGallery = (media) => {
                   src="../img/gallerie/${media.video} "
                   controls
                   alt="${media.title}"
-                />
-                </a>
-                <figcaption class="cardphoto__info" >
+                  />
+                  </a>
+                  <figcaption class="cardphoto__info" >
                   <p class="cardphoto__title">${media.title}</p>
                   <p tabindex="0" aria-label="nombre de like" class="cardphoto__numberlike">${media.likes}</p>
                   <i tabindex="0" role="button" aria-label="ajouter ou supprimer le like" class="cardphoto__icon fas fa-heart"></i>
-                </figcaption>
-              </figure>
-          `;
+                  </figcaption>
+                  </figure>
+                  `;
   }
-
   totalLike.push(media.likes);
-
   totalLikes();
+};
+
+// Création du footer
+const createFooter = (photographer) => {
+  const footer = document.querySelector("footer");
+  footer.innerHTML += `
+                <div class="like">
+                <p tabindex="0" aria-label="Nombre total de like" class="like__compter"></p>
+                <i class="like__icon fas fa-heart"></i>
+                </div>
+                <div>
+                <p tabindex="0" aria-label="prix ${photographer.price} €/jour" class="price">${photographer.price}€/jour</p>
+                </div>`;
 };
 
 // Creation de la modal de contact
@@ -184,21 +191,7 @@ const createModalContact = (photographer) => {
 </div>
   `;
 };
-
-const createFooter = (photographer) => {
-  const footer = document.querySelector("footer");
-  footer.innerHTML += `
-  <div class="like">
-  <p tabindex="0" aria-label="Nombre total de like" class="like__compter"></p>
-  <i class="like__icon fas fa-heart"></i>
-  </div>
-  <div>
-  <p tabindex="0" aria-label="prix ${photographer.price} €/jour" class="price">${photographer.price}€/jour</p>
-  </div>`;
-};
-
-/// GESTION DU FORMULAIRE
-
+/// Gestion du formulaire de contact
 const viewModal = () => {
   photographers.map((photographer) => createModalContact(photographer));
   const iconModal = document.querySelector(".modal__close");
@@ -259,12 +252,6 @@ const viewModal = () => {
   const errorLast = document.querySelector(".last");
   const errorMail = document.querySelector(".email");
   const errorMessage = document.querySelector(".message");
-
-  function resetError(selector, selectorError) {
-    selector.classList.remove("error-input");
-    selector.setAttribute("aria-invalid", "false");
-    selectorError.textContent = "";
-  }
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
