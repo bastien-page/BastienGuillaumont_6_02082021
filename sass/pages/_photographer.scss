@@ -94,10 +94,19 @@
   }
   .infoPhotographer {
     background-color: white;
-    margin: 10px 10px;
-    padding: 0;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
   }
   .photographer {
+    &__infos {
+      margin: 10px;
+      width: 220px;
+    }
+    &__tag {
+      flex-wrap: wrap;
+    }
+
     &__btn .contact {
       position: fixed;
       bottom: 35px;
@@ -112,16 +121,18 @@
       z-index: 1000;
     }
     &__name {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     &__city {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
     &__slogan {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
     &__pp img {
-      display: none;
+      width: 100px;
+      height: 100px;
+      margin-left: -130px;
     }
   }
 }
