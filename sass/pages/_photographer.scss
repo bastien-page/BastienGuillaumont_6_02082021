@@ -118,7 +118,7 @@
       font-weight: 700;
       font-size: 1rem;
       padding: 0.5rem 1rem;
-      z-index: 1000;
+      z-index: 1;
     }
     &__name {
       font-size: 1.5rem;
@@ -132,7 +132,7 @@
     &__pp img {
       width: 100px;
       height: 100px;
-      margin-left: -130px;
+      margin-left: -120px;
     }
   }
 }

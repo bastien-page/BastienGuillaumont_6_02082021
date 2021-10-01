@@ -118,6 +118,7 @@
 
 @media screen and (max-width: $breakpointpad) {
   .modal {
+    margin: 0px auto;
     &__title {
       font-size: 3rem;
     }
